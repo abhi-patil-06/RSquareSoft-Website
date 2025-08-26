@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+
+/* Light theme (default) */
+@theme {
+  --font-family-base: 'Roboto', sans-serif;
+
+  /* Font sizes */
+  --font-size-title: 2.7rem;
+  --font-size-heading: 1.4rem;
+  --font-size-heading1: 1.9rem;
+  --font-size-subheading: 1.2rem;
+  --font-size-description: 1rem;
+  --font-size-description2: 1.1rem;
+  --font-size-button: 1rem;
+
+  /* Line heights */
+  --line-height-title: 1.2;
+  --line-height-heading: 1.3;
+  --line-height-subheading: 1.4;
+  --line-height-description: 1.6;
+  --line-height-button: 1.4;
+
+  /* Colors */
+  --color-primary: #0073e6;
+  --color-secondary: #005bb5;
+  --color-text-primary: #333333;
+  --color-text-secondary: #666666;
+  --color-background: #F3F4F6;
+  --color-background1: #b3d8fc;
+  --color-background2: #c1dbf5;
+  --color-button-background: #0073e6;
+  --color-button-hover-background: #005bb5;
+  --color-button-text: #ffffff;
+  --color-border: #333333;
+
+  /* Gradient colors  */
+  --darkBlue-gradient: linear-gradient(135deg, #3b82f6, #2563eb);
+
+  /* Spacing */
+  --spacing-base-padding: 1rem;
+  --spacing-button-padding: 0.75rem 1.5rem;
+  --spacing-section-margin: 2rem 0;
+}
+
+
+
+
+
+
+
+.fade-in { animation: fadeIn 0.8s both; }
+  .fade-out { animation: fadeOut 0.7s both; }
+  @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+  @keyframes fadeOut { from{opacity:1} to{opacity:0} }
