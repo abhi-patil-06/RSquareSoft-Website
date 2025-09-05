@@ -13,118 +13,8 @@ import PublicIcon from "@mui/icons-material/Public";
 import SpeedIcon from "@mui/icons-material/Speed";
 import CloudQueueIcon from "@mui/icons-material/CloudQueue";
 import { useNavigate } from "react-router-dom";
-
-// DATA OBJECT FOR SECTION CONTENT
-const cloudExpertiseArticle = {
-  title: "Cloud Expertise",
-  sections: [
-    {
-      heading: "What is Cloud Expertise?",
-      content: (
-        <>
-          <span>
-            <Link href="https://en.wikipedia.org/wiki/Cloud_computing" target="_blank" underline="hover" rel="noopener noreferrer">
-              Cloud expertise
-            </Link>{" "}
-            represents organization-wide proficiency in designing, deploying, maintaining, and optimizing applications and infrastructure on cloud platforms such as{" "}
-            <Link href="https://en.wikipedia.org/wiki/Amazon_Web_Services" target="_blank" underline="hover" rel="noopener noreferrer">AWS</Link>,{" "}
-            <Link href="https://en.wikipedia.org/wiki/Microsoft_Azure" target="_blank" underline="hover" rel="noopener noreferrer">Azure</Link>, and{" "}
-            <Link href="https://en.wikipedia.org/wiki/Google_Cloud_Platform" target="_blank" underline="hover" rel="noopener noreferrer">Google Cloud</Link>{" "}
-            (GCP). Cloud experts leverage the flexibility, scalability, and global reach of cloud infrastructure to drive innovation while maintaining cost efficiency, resilience, and security. This expertise covers architecture, migration, DevOps, security best practices, compliance, and cloud-native development.
-          </span>
-        </>
-      )
-    },
-    {
-      heading: "Why is Cloud Expertise Essential?",
-      content: (
-        <>
-          <span>
-            As organizations accelerate digital transformation, cloud adoption ensures agility, scalability, and access to cutting-edge technologies such as{" "}
-            <Link href="https://en.wikipedia.org/wiki/Artificial_intelligence" target="_blank" underline="hover" rel="noopener noreferrer">AI</Link>,{" "}
-            <Link href="https://en.wikipedia.org/wiki/Big_data" target="_blank" underline="hover" rel="noopener noreferrer">Big Data</Link>, and{" "}
-            <Link href="https://en.wikipedia.org/wiki/Internet_of_things" target="_blank" underline="hover" rel="noopener noreferrer">IoT</Link>. Cloud expertise allows businesses to:
-            <ul className="list-disc pl-6 mt-2 mb-2">
-              <li>Respond quickly to market changes and deploy IT resources on-demand.</li>
-              <li>Optimize infrastructure spend and eliminate downtime with resilient, scalable architectures.</li>
-              <li>Ensure data security and compliance across regions and jurisdictions.</li>
-              <li>Innovate with services such as serverless, containers, and managed machine learning platforms.</li>
-            </ul>
-          </span>
-        </>
-      )
-    },
-    {
-      heading: "How Does Cloud Expertise Work?",
-      content: (
-        <>
-          <span>
-            Cloud specialists help organizations at every stage of the <Link href="https://en.wikipedia.org/wiki/Cloud_computing#Deployment_models" target="_blank" underline="hover" rel="noopener noreferrer">cloud journey</Link>:
-            <ul className="list-disc pl-6 mt-2 mb-2">
-              <li>
-                <strong>Assessment & Strategy:</strong> Determining business needs, regulatory requirements, and optimal cloud architecture (single, multi, or hybrid cloud).
-              </li>
-              <li>
-                <strong>Migration:</strong> Moving data, workloads, and applications from <Link href="https://en.wikipedia.org/wiki/On-premises_software" target="_blank" underline="hover" rel="noopener noreferrer">on-premises</Link> infrastructure to the cloud with minimal disruption.
-              </li>
-              <li>
-                <strong>Optimization:</strong> Implementing <Link href="https://en.wikipedia.org/wiki/DevOps" target="_blank" underline="hover" rel="noopener noreferrer">DevOps</Link> practices, automating deployment, integrating with CI/CD, and using cloud monitoring for performance and savings.
-              </li>
-              <li>
-                <strong>Governance & Security:</strong> Applying <Link href="https://en.wikipedia.org/wiki/Cloud_computing_security" target="_blank" underline="hover" rel="noopener noreferrer">cloud security</Link> frameworks, access controls, compliance monitoring, and disaster recovery planning.
-              </li>
-            </ul>
-          </span>
-        </>
-      )
-    },
-    {
-      heading: "Key Features & Capabilities",
-      content: [
-        <>Scalable infrastructure: On-demand compute, storage, and networking</>,
-        <>Multi-cloud and hybrid support for workload flexibility</>,
-        <>Cloud-native security and compliance controls</>,
-        <>Automated provisioning, deployment, and self-healing systems</>,
-        <>Integrated analytics and monitoring across cloud resources</>,
-        <>Seamless integration with <Link href="https://en.wikipedia.org/wiki/Application_programming_interface" target="_blank" underline="hover" rel="noopener noreferrer">APIs</Link>, containers, and DevOps pipelines</>
-      ]
-    },
-    {
-      heading: "Real-World Usage & Examples",
-      content: (
-        <>
-          <span>
-            Enterprises worldwide leverage cloud expertise to <Link href="https://aws.amazon.com/solutions/case-studies/" target="_blank" rel="noopener noreferrer" underline="hover">drive efficiency & resilience</Link>:
-            <ul className="list-disc pl-6 mt-2 mb-2">
-              <li>
-                <strong>Netflix:</strong>{" "}
-                <Link href="https://en.wikipedia.org/wiki/Netflix" target="_blank" rel="noopener noreferrer" underline="hover">Netflix</Link> runs its global streaming platform on AWS for scalability and speed-to-market.
-              </li>
-              <li>
-                <strong>Airbnb:</strong>{" "}
-                <Link href="https://en.wikipedia.org/wiki/Airbnb" target="_blank" rel="noopener noreferrer" underline="hover">Airbnb</Link> uses microservices architecture in the cloud to handle massive surges during peak travel seasons.
-              </li>
-              <li>
-                <strong>Banks & Healthcare:</strong> Enable secure disaster recovery and regulatory compliance with hybrid/multi-cloud architectures.
-              </li>
-            </ul>
-          </span>
-        </>
-      )
-    },
-    {
-      heading: "Typical Usage Scenarios",
-      content: [
-        <>Rapid application scaling for campaign or seasonal spikes</>,
-        <>Disaster recovery and business continuity solutions</>,
-        <>Data analytics and <Link href="https://en.wikipedia.org/wiki/Machine_learning" target="_blank" underline="hover" rel="noopener noreferrer">machine learning</Link> workloads</>,
-        <>Secure API management and integration with SaaS products</>,
-        <>Multi-region deployment for high availability</>,
-        <>Automated DevOps deployment, monitoring, and scaling</>
-      ]
-    }
-  ]
-};
+import { cloudExpertiseArticle } from "../../data/TechnologyData";
+import cloudImg from '../../assets/cloud-service.png'
 
 
 export default function CloudExpertise() {
@@ -135,7 +25,22 @@ export default function CloudExpertise() {
 
       {/* Hero Section */}
       <section className="py-22 md:py-20  md:pt-35 bg-gradient-to-r from-blue-100 via-blue-50 to-white px-8 text-center w-full mx-auto">
-        <h1 className="text-primary tracking-tight font-bold drop-shadow-lg" style={{ fontSize: 'var(--font-size-title)' }}>
+        
+        {/* Breadcrumb Navigation - fixed top left corner within the div */}
+        <nav className="absolute top-26 md:top-25 md:left-23 text-text-primary text-xl uppercase ">
+          {/* First line: breadcrumb links separated by slash */}
+          <div className="flex space-x-3">
+            <a>
+              What We Do
+            </a>
+            <span>/</span>
+            <span>technology</span>
+          </div>
+          {/* Second line: horizontal dividing line */}
+          <div className="md:mt-5 h-[2px] w-[300px] md:w-4xl rounded-sm bg-gradient-to-r from-gray-500 via-gray-300 to-transparent"></div>
+        </nav>
+        
+        <h1 className="text-primary pt-15 tracking-tight font-bold drop-shadow-lg" style={{ fontSize: 'var(--font-size-title)' }}>
           Cloud Expertise for Modern Business
         </h1>
         <p className="mt-4 text-text-primary italic" style={{ fontSize: 'var(--font-size-description)' }}>
@@ -143,7 +48,7 @@ export default function CloudExpertise() {
         </p>
         <Box
           component="img"
-          src="public/cloud-service.png"
+          src={cloudImg}
           alt="Cloud Expertise"
           className="mx-auto mb-4 mt-5 md:mt-10 max-h-72"
         />

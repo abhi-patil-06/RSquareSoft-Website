@@ -1,43 +1,17 @@
 import React, { useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { lifeAtData } from "../../data/HomeData";
 
-const slides = [
-    {
-        image: "public/lifeat1.png",
-        title: "Collaborative Environment",
-        description: "We foster team spirit and innovation with every project we take on.",
-    },
-    {
-        image: "public/lifeat2.png",
-        title: "Learning Work Culture",
-        description: "Upskilling and mentorship are at the heart of our culture.",
-    },
-    {
-        image: "public/lifeat3.png",
-        title: "Modern Workspaces",
-        description: "Our workspaces reflect our tech-first and employee-first approach.",
-    },
-    {
-        image: "public/lifeat4.png",
-        title: "Celebrating Together",
-        description: "We believe in celebrating milestones and building connections.",
-    },
-    {
-        image: "public/lifeat5.png",
-        title: "Diversity & Inclusion",
-        description: "We empower people from all walks of life to thrive together.",
-    },
-];
 
 export default function LifeAtCompany() {
     const [currentIndex, setCurrentIndex] = useState(0);
 
     const prevSlide = () => {
-        setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length);
+        setCurrentIndex((prev) => (prev - 1 + lifeAtData.length) % lifeAtData.length);
     };
 
     const nextSlide = () => {
-        setCurrentIndex((prev) => (prev + 1) % slides.length);
+        setCurrentIndex((prev) => (prev + 1) % lifeAtData.length);
     };
 
     return (
@@ -65,8 +39,8 @@ export default function LifeAtCompany() {
 
                     {/* Background Image */}
                     <img
-                        src={slides[currentIndex].image}
-                        alt={slides[currentIndex].title}
+                        src={lifeAtData[currentIndex].image}
+                        alt={lifeAtData[currentIndex].title}
                         className="absolute inset-0 w-full h-full object-cover z-0 bg-white "
                     />
 
@@ -80,8 +54,8 @@ export default function LifeAtCompany() {
                         <div className="text-button-text max-w-xl">
 
                             <p className=" mb-10" style={{ fontSize: 'var(--font-size-subheading)' }}>Our Company Culture </p>
-                            <h2 className="font-bold mb-4" style={{ fontSize: 'var(--font-size-title)' }}>{slides[currentIndex].title}</h2>
-                            <p className=" mb-8" style={{ fontSize: 'var(--font-size-subheading)' }}>{slides[currentIndex].description}</p>
+                            <h2 className="font-bold mb-4" style={{ fontSize: 'var(--font-size-title)' }}>{lifeAtData[currentIndex].title}</h2>
+                            <p className=" mb-8" style={{ fontSize: 'var(--font-size-subheading)' }}>{lifeAtData[currentIndex].description}</p>
 
                             {/* Navigation Arrows Below Text */}
                             <div className="flex space-x-10 mt-2">

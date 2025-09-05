@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "@mui/material";
-import StarIcon from "@mui/icons-material/Star";
+import valetPlusLogo from '../../assets/logoValetPlus.svg'
+import valetPlusBg from '../../assets/valet-plus-bg2.png'
 
 // Typing Effect Hook
 const useTypingEffect = (
@@ -56,20 +56,34 @@ const ValetPlus = () => {
         <section className="min-h-screen flex items-center justify-center bg-white px-6">
             <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
+                {/* Breadcrumb Navigation - fixed top left corner within the div */}
+                <nav className="absolute top-25 md:top-25 text-text-primary font-bold text-lg md:text-2xl uppercase">
+                    {/* First line: breadcrumb links separated by slash */}
+                    <div className="flex space-x-3">
+                        <a>
+                            What We Do
+                        </a>
+                        <span>/</span>
+                        <span>Products</span>
+                    </div>
+                    {/* Second line: horizontal dividing line */}
+                    <div className="md:mt-5 h-[2px] w-[300px] md:w-4xl rounded-sm bg-gradient-to-r from-gray-500 via-gray-300 to-transparent"></div>
+                </nav>
+
                 {/* Left Side */}
                 <div
-                    className="flex flex-col items-center text-center select-none space-y-8 max-w-xl mx-auto"
+                    className="flex flex-col pt-35 items-center text-center select-none space-y-8 max-w-xl mx-auto"
                     style={{ animation: "fadeSlideIn 1s ease forwards" }}
                 >
-                    <div className="flex items-center justify-center mb-4">
-                        <img src="public\logo\logoValetPlus.svg" alt="ValetPlus" className="w-100" />
+                    <div className="flex justify-start mb-4 w-full">
+                        <img src={valetPlusLogo} alt="ValetPlus" className="w-100" />
                     </div>
 
                     {/* <h1 className="text-5xl font-extrabold text-gray-900 leading-tight">
                         We Focus On
                     </h1> */}
 
-                    <h2 className="text-3xl font-semibold text-gradient-to-r from-blue-500 to-cyan-400 relative h-7 mt-10 w-full text-start inline-block">
+                    <h2 className="text-3xl font-semibold text-gradient-to-r from-blue-500 to-cyan-400 relative h-7 mt-10 pb-15 md:pb-0 w-full text-start inline-block">
                         Focused on <span className="text-violet-700 pb-1">{typedText}</span><span className="text-violet-700 animate-blink">|</span>
                     </h2>
 
@@ -89,7 +103,7 @@ const ValetPlus = () => {
                     style={{ animation: "fadeSlideIn 1s ease forwards", animationDelay: "0.5s" }}
                 >
                     <img
-                        src="product-bg/valet-plus-bg2.png"
+                        src={valetPlusBg}
                         alt="Hero"
                         className="max-w-full h-auto md:mr-10"
                     />

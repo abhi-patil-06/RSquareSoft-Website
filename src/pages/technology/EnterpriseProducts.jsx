@@ -10,55 +10,8 @@ import AutoGraphIcon from "@mui/icons-material/AutoGraph";
 import SecurityIcon from "@mui/icons-material/Security";
 import PublicIcon from "@mui/icons-material/Public";
 import { useNavigate } from "react-router-dom";
-
-// DATA OBJECT FOR SECTION CONTENT
-const enterpriseProductionArticle = {
-  title: "Enterprise Production",
-  sections: [
-    {
-      heading: "What is Enterprise Production?",
-      content:
-        "Enterprise Production refers to the holistic process of architecting, orchestrating, and managing large-scale, mission-critical systems for complex organizations. Unlike standard production operations, it leverages advanced automation, modular architectures, and seamless integration with business-wide platforms (such as ERP, supply chain, and customer management). Enterprise production entails end-to-end control over systems, ensuring performance, resiliency, and governance for continuously evolving enterprise needs."
-    },
-    {
-      heading: "Why Do Enterprises Need Specialized Production?",
-      content:
-        "Enterprises operate in volatile, high-stakes environments, handling large data volumes and facing evolving regulatory and operational challenges. Specialized enterprise production infrastructure provides the ability to: (1) respond swiftly to market or supply chain changes; (2) ensure compliance with industry and governmental standards; (3) guarantee business continuity through redundant, resilient systems; and (4) enable agile, cross-functional collaboration at scale. As organizations expand or diversify offerings, a robust production backbone is critical for supporting new business models and digital transformations."
-    },
-    {
-      heading: "How Does Enterprise Production Work?",
-      content:
-        "Successful enterprise production environments are built around several core paradigms:\n• Automation: Streamlining operations with CI/CD pipelines and IT orchestration tools.\n• Security & Compliance: Implementing multi-layered controls, centralized monitoring, and audit trails.\n• Data Analytics: Gathering real-time metrics for predictive insights and rapid decision-making.\n• Integration: Connecting disparate business apps, third-party tools, and custom workflows to create a unified operational ecosystem.\n• Scalability: Leveraging cloud-native and hybrid infrastructure that can grow on demand while maintaining high performance and minimal downtime."
-    },
-    {
-      heading: "Key Features & Capabilities",
-      content: [
-        "Scalability to manage global operations and unpredictable growth",
-        "Advanced integration with ERP, CRM, and legacy systems",
-        "Enterprise-grade security, compliance management, and end-to-end audit trails",
-        "Comprehensive, real-time monitoring, analytics, and alerting dashboards",
-        "Automation of deployment, quality assurance, and routine workflows",
-        "Configurable workflows and infrastructure for dynamic business needs"
-      ]
-    },
-    {
-      heading: "Real-World Usage & Examples",
-      content:
-        "Across industries, enterprise production solutions are the linchpin for digital transformation. Manufacturers use them to connect smart factories and automate logistics; financial firms deploy them for regulatory reporting, fraud detection, and 24/7 client operations; and e-commerce giants rely on them for seamless multichannel order fulfillment. In every use case, they ensure high availability, security, and rapid adaptability, empowering leading organizations to stay competitive in demanding global markets."
-    },
-    {
-      heading: "Typical Usage Scenarios",
-      content: [
-        "Enterprise-wide workflow automation to accelerate delivery and reduce errors.",
-        "High availability architecture and redundancy for mission-critical system uptime.",
-        "Industry-specific compliance and cybersecurity frameworks (GDPR, HIPAA, SOX, etc.).",
-        "Orchestrated CI/CD and deployment pipelines for faster releases and reduced downtime.",
-        "Real-time monitoring and analytics to support business intelligence and proactive maintenance.",
-        "Self-healing infrastructure to mitigate outages with automated failover and rollback."
-      ]
-    }
-  ]
-};
+import { enterpriseProductionArticle } from "../../data/TechnologyData";
+import enterpriseImg from '../../assets/enterprise.png'
 
 export default function EnterpriseProductionModern() {
   const navigate = useNavigate()
@@ -70,7 +23,22 @@ export default function EnterpriseProductionModern() {
         {/* <Typography variant="h2" fontWeight="bold" color="primary" gutterBottom>
           Enterprise Production Reimagined
         </Typography> */}
-        <h1 className="text-primary tracking-tight font-bold drop-shadow-lg" style={{ fontSize: 'var(--font-size-title)' }}>
+
+        {/* Breadcrumb Navigation - fixed top left corner within the div */}
+        <nav className="absolute top-26 md:top-25 md:left-23 text-text-primary text-xl uppercase ">
+          {/* First line: breadcrumb links separated by slash */}
+          <div className="flex space-x-3">
+            <a>
+              What We Do
+            </a>
+            <span>/</span>
+            <span>technology</span>
+          </div>
+          {/* Second line: horizontal dividing line */}
+          <div className="md:mt-5 h-[2px] w-[300px] md:w-4xl rounded-sm bg-gradient-to-r from-gray-500 via-gray-300 to-transparent"></div>
+        </nav>
+
+        <h1 className="text-primary pt-15 tracking-tight font-bold drop-shadow-lg" style={{ fontSize: 'var(--font-size-title)' }}>
           Enterprise Production Reimagined
         </h1>
         <p className="mt-4 text-text-primary  italic" style={{ fontSize: 'var(--font-size-description)' }}>
@@ -78,7 +46,7 @@ export default function EnterpriseProductionModern() {
         </p>
         <Box
           component="img"
-          src="/enterprise.png"
+          src={enterpriseImg}
           alt="Enterprise Production Modern"
           className="mx-auto mb-4 mt-5 md:mt-10 max-h-72"
         />

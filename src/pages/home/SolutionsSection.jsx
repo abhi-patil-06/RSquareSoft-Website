@@ -1,48 +1,10 @@
 // src/components/SolutionsSection.jsx
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaLaptopCode, FaShoppingCart, FaMobileAlt, FaGlobe, FaUsersCog, FaBrain } from "react-icons/fa";
-
+import { whatWeBuildData } from '../../data/HomeData';
 
 const SolutionsSection = () => {
-    const serviceCards = [
-    {
-        icon: <FaLaptopCode className="w-12 h-12 " />,
-        title: "Web Applications",
-        description:
-            "We empower digital transformation with bespoke solutions that optimize processes and enhance experiences.",
-    },
-    {
-        icon: <FaShoppingCart className="w-12 h-12 " />,
-        title: "Digital Platforms",
-        description:
-            "We build e-commerce platforms with engaging interfaces that boost sales and enhance experience.",
-    },
-    {
-        icon: <FaMobileAlt className="w-12 h-12 " />,
-        title: "Mobile Applications",
-        description:
-            "We build scalable data pipelines and architectures to efficiently process and analyze large datasets.",
-    },
-    {
-        icon: <FaGlobe className="w-12 h-12 " />,
-        title: "Product Development",
-        description:
-            "Our professionals design visually stunning websites with seamless functionality, elevating brands.",
-    },
-    {
-        icon: <FaUsersCog className="w-12 h-12 " />,
-        title: "Pod Model",
-        description:
-            "We design feature-rich mobile apps for global industries, ensuring success with transparent workflows.",
-    },
-    {
-        icon: <FaBrain className="w-12 h-12 " />,
-        title: "Time & Material",
-        description:
-            "We specialize in AI-driven applications including intelligent chat solutions and automated.",
-    },
-];
+    
 
     return (
         <section className="bg-background py-16 font-family-base">
@@ -71,7 +33,7 @@ const SolutionsSection = () => {
 
                 {/* Right Services Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    {serviceCards.map((card, index) => (
+                    {whatWeBuildData.map((card, index) => (
                         <motion.div
                             key={index}
                             className="bg-white rounded-2xl p-4 shadow-md border border-gray-200 

@@ -13,121 +13,9 @@ import PublicIcon from "@mui/icons-material/Public";
 import IntegrationInstructionsIcon from "@mui/icons-material/IntegrationInstructions";
 import SecurityIcon from "@mui/icons-material/Security";
 import { useNavigate } from "react-router-dom";
+import { artificialIntelligenceArticle } from "../../data/TechnologyData";
+import aiImg from '../../assets/ai.png'
 
-// DATA OBJECT FOR SECTION CONTENT
-const artificialIntelligenceArticle = {
-  title: "Artificial Intelligence",
-  sections: [
-    {
-      heading: "What is Artificial Intelligence?",
-      content: (
-        <>
-          <span>
-            <Link href="https://en.wikipedia.org/wiki/Artificial_intelligence" target="_blank" underline="hover" rel="noopener noreferrer">
-              Artificial Intelligence (AI)
-            </Link>{" "}
-            is the branch of computer science focused on building systems that can perform tasks typically requiring human intelligence. These include perception, reasoning, learning, natural language understanding, and decision making. Modern AI is powered by advances in{" "}
-            <Link href="https://en.wikipedia.org/wiki/Machine_learning" target="_blank" underline="hover" rel="noopener noreferrer">machine learning (ML)</Link>,
-            <Link href="https://en.wikipedia.org/wiki/Natural_language_processing" target="_blank" underline="hover" rel="noopener noreferrer"> NLP</Link>,
-            <Link href="https://en.wikipedia.org/wiki/Computer_vision" target="_blank" underline="hover" rel="noopener noreferrer">computer vision</Link>, and robust computing infrastructure, enabling computers to analyze large volumes of data, recognize patterns, and make intelligent predictions or automate complex tasks.
-          </span>
-        </>
-      )
-    },
-    {
-      heading: "Why is Artificial Intelligence Important?",
-      content: (
-        <>
-          <span>
-            AI transforms industries by automating repetitive work, uncovering insights in massive data sets, and enabling intelligent products and services. According to <Link href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-in-2023-generative-ais-breakout-year" target="_blank" underline="hover" rel="noopener noreferrer">McKinsey</Link>, AI adoption is associated with improved productivity, cost savings, and new revenue streams. Organizations use AI for:
-            <ul className="list-disc pl-6 mt-2 mb-2">
-              <li>Personalized customer engagement and recommendation engines</li>
-              <li>Fraud detection, risk analysis, and cybersecurity in banking and insurance</li>
-              <li>Diagnostic imaging, drug discovery, and patient care support in healthcare</li>
-              <li>Forecasting, supply optimization, and predictive maintenance in manufacturing and logistics</li>
-              <li>Intelligent automation of back-office and customer service tasks (chatbots, RPA)</li>
-            </ul>
-          </span>
-        </>
-      )
-    },
-    {
-      heading: "How Does AI Work?",
-      content: (
-        <>
-          <span>
-            AI systems combine <Link href="https://en.wikipedia.org/wiki/Big_data" target="_blank" underline="hover" rel="noopener noreferrer">big data</Link>,
-            <Link href="https://en.wikipedia.org/wiki/Deep_learning" target="_blank" underline="hover" rel="noopener noreferrer">deep learning</Link>,
-            algorithms, and cloud computing to extract meaning and automate actions from complex information:
-            <ul className="list-disc pl-6 mt-2 mb-2">
-              <li>
-                <strong>Data collection:</strong> Aggregating data from digital systems, sensors, and human interactions.
-              </li>
-              <li>
-                <strong>Model training:</strong> Using <Link href="https://en.wikipedia.org/wiki/Supervised_learning" target="_blank" underline="hover" rel="noopener noreferrer">supervised</Link>,
-                <Link href="https://en.wikipedia.org/wiki/Unsupervised_learning" target="_blank" underline="hover" rel="noopener noreferrer"> unsupervised</Link>, or
-                <Link href="https://en.wikipedia.org/wiki/Reinforcement_learning" target="_blank" underline="hover" rel="noopener noreferrer"> reinforcement</Link> learning approaches to build predictive or generative models.
-              </li>
-              <li>
-                <strong>Inference & deployment:</strong> Integrating trained models into applications to make real-time decisions, automate processes, or interact with users via natural language or vision.
-              </li>
-              <li>
-                <strong>Continuous learning:</strong> Improving accuracy and adapting to new patterns via data feedback loops and
-                <Link href="https://en.wikipedia.org/wiki/MLOps" target="_blank" underline="hover" rel="noopener noreferrer"> MLOps</Link> practices.
-              </li>
-            </ul>
-          </span>
-        </>
-      )
-    },
-    {
-      heading: "Key Features & Capabilities",
-      content: [
-        <>Machine learning model development and deployment</>,
-        <>Predictive analytics for forecasting and real-time insights</>,
-        <>Natural language understanding and conversational AI</>,
-        <>Computer vision, image and video analysis</>,
-        <>Intelligent process automation and robotic process automation (RPA)</>,
-        <>Responsible AI: fairness, explainability, and security</>
-      ]
-    },
-    {
-      heading: "Real-World Usage & Examples",
-      content: (
-        <>
-          <span>
-            AI is embedded in industry-leading solutions worldwide:
-            <ul className="list-disc pl-6 mt-2 mb-2">
-              <li>
-                <Link href="https://en.wikipedia.org/wiki/Google_Search" target="_blank" underline="hover" rel="noopener noreferrer">Google Search</Link>, <Link href="https://en.wikipedia.org/wiki/Recommendation_system" target="_blank" underline="hover" rel="noopener noreferrer">Netflix recommendations</Link>, and <Link href="https://en.wikipedia.org/wiki/ChatGPT" target="_blank" rel="noopener noreferrer" underline="hover">ChatGPT</Link> use AI to provide highly personalized experience.
-              </li>
-              <li>
-                <strong>Healthcare:</strong> AI algorithms support radiologists in detecting diseases from X-rays and MRI scans, such as <Link href="https://en.wikipedia.org/wiki/IBM_Watson_Health" target="_blank" underline="hover" rel="noopener noreferrer">IBM Watson Health</Link>.
-              </li>
-              <li>
-                <strong>Retail and e-commerce:</strong> Companies like <Link href="https://en.wikipedia.org/wiki/Amazon_(company)" target="_blank" underline="hover" rel="noopener noreferrer">Amazon</Link> use AI for demand forecasting, warehouse automation, and dynamic pricing.
-              </li>
-              <li>
-                <strong>Banking:</strong> Major banks use AI for anti-money laundering (AML), fraud analytics, and loan risk models.
-              </li>
-            </ul>
-          </span>
-        </>
-      )
-    },
-    {
-      heading: "Typical Usage Scenarios",
-      content: [
-        <>Conversational AI for chatbots and virtual assistants</>,
-        <>Predictive maintenance for industrial IoT</>,
-        <>Personalized recommendations in e-commerce and content platforms</>,
-        <>Medical imaging and patient care support</>,
-        <>Automated document processing and intelligent data extraction</>,
-        <>Real-time risk monitoring and cybersecurity analytics</>
-      ]
-    }
-  ]
-};
 
 export default function ArtificialIntelligence() {
   const navigate = useNavigate();
@@ -136,7 +24,22 @@ export default function ArtificialIntelligence() {
 
       {/* Hero Section */}
       <section className="py-22 md:py-20  md:pt-35 bg-gradient-to-r from-blue-100 via-blue-50 to-white px-8 text-center w-full mx-auto">
-        <h1 className="text-primary tracking-tight font-bold drop-shadow-lg" style={{ fontSize: 'var(--font-size-title)' }}>
+        
+        {/* Breadcrumb Navigation - fixed top left corner within the div */}
+        <nav className="absolute top-26 md:top-25 md:left-23 text-text-primary text-xl uppercase ">
+          {/* First line: breadcrumb links separated by slash */}
+          <div className="flex space-x-3">
+            <a>
+              What We Do
+            </a>
+            <span>/</span>
+            <span>technology</span>
+          </div>
+          {/* Second line: horizontal dividing line */}
+          <div className="md:mt-5 h-[2px] w-[300px] md:w-4xl rounded-sm bg-gradient-to-r from-gray-500 via-gray-300 to-transparent"></div>
+        </nav>
+        
+        <h1 className="text-primary pt-15 tracking-tight font-bold drop-shadow-lg" style={{ fontSize: 'var(--font-size-title)' }}>
           Artificial Intelligence Solutions
         </h1>
         <p className="mt-4 text-text-primary italic" style={{ fontSize: 'var(--font-size-description)' }}>
@@ -144,7 +47,7 @@ export default function ArtificialIntelligence() {
         </p>
         <Box
           component="img"
-          src="public/ai.png"
+          src={aiImg}
           alt="Artificial Intelligence"
           className="mx-auto mb-4 mt-5 md:mt-10 max-h-72"
         />

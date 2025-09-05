@@ -11,71 +11,10 @@ import HiringProcessSection from "./HiringProcessSection";
 import ModernHiringProcess from "./HiringProcessSection";
 import EmployeeGrowthSection from "./EmployeeGrowthSection";
 import EmployeeCarousel from "./EmployeeGrowthSection";
-
-const benefits = [
-  { icon: <FaHome size={22} color="#1976d2" />, label: "Remote or Hybrid Work" },
-  { icon: <FaCoins size={22} color="#efb81a" />, label: "Competitive Salaries" },
-  { icon: <MdOutlineStar size={22} color="#c026d3" />, label: "Rapid Growth" },
-  { icon: <FaUsers size={22} color="#0288d1" />, label: "Collaborative Teams" },
-  { icon: <MdOutlinePaid size={22} color="#3BB273" />, label: "Wellness Benefits" },
-  { icon: <GiSandsOfTime size={22} color="#8b5cf6" />, label: "Flexible Hours" },
-];
-
-const positionList = [
-  {
-    title: "Frontend Developer",
-    type: "Development",
-    location: "Remote",
-    keywords: ["React", "JavaScript", "UI"],
-    desc: "Build beautiful, performant user experiences at scale in React.",
-    link: "#"
-  },
-  {
-    title: "Backend Engineer",
-    type: "Development",
-    location: "Bangalore",
-    keywords: ["Node.js", "API", "Cloud"],
-    desc: "Architect scalable RESTful microservices deployed on the cloud.",
-    link: "#"
-  },
-  {
-    title: "Product Manager",
-    type: "Product",
-    location: "Hybrid",
-    keywords: ["Ownership", "Client", "Scrum"],
-    desc: "Lead sprints and act as a liaison between clients and squads.",
-    link: "#"
-  },
-  {
-    title: "QA Automation Engineer",
-    type: "QA",
-    location: "Remote",
-    keywords: ["Quality", "Cypress", "Selenium"],
-    desc: "Automate and ensure delivery quality using cutting-edge test frameworks.",
-    link: "#"
-  },
-  {
-    title: "AI/ML Specialist",
-    type: "AI",
-    location: "Remote",
-    keywords: ["Machine Learning", "Python", "AI"],
-    desc: "Design and implement production-grade ML pipelines.",
-    link: "#"
-  },
-];
-
-const typeFilters = ["All", "Development", "Product", "QA", "AI"];
-
+import careerBg from "../../assets/Career-Section.jpg"
 
 
 export default function Careers() {
-  const [selectedType, setSelectedType] = useState("All");
-
-  const filteredPositions =
-    selectedType === "All"
-      ? positionList
-      : positionList.filter(job => job.type === selectedType);
-
   return (
     <>
       <Box
@@ -100,7 +39,7 @@ export default function Careers() {
             display: "flex",
             alignItems: "end",
             justifyContent: "center",
-            backgroundImage: `url("/public/Career-Section.jpg")`,
+            backgroundImage: `url(${careerBg})`,
             backgroundAttachment: "fixed",
             backgroundSize: "cover",
             backgroundPosition: "center",
@@ -108,6 +47,7 @@ export default function Careers() {
             mb: 5,
           }}
         >
+
           {/* Overlay */}
           <Box
             sx={{
@@ -118,17 +58,32 @@ export default function Careers() {
               zIndex: 1,
             }}
           />
+
+
           {/* Content */}
           <Box
             sx={{
               position: "relative",
               zIndex: 2,
-              width: { xs: "90%", md: "60%" },
+              width: { xs: "90%", md: "80%" },
               textAlign: { xs: "center", md: "left" },
-              mx: "auto",
-              py: { xs: 5, md: 8 },
+              // mx: "auto",
+              py: { xs: 5, md: 20 },
             }}
           >
+            {/* Breadcrumb Navigation - fixed top left corner within the div */}
+            <nav className="absolute -top-12 md:top-15 text-white font-bold text-lg md:text-2xl uppercase">
+              {/* First line: breadcrumb links separated by slash */}
+              <div className="flex space-x-3">
+                <a>
+                  Careers
+                </a>
+                {/* <span>/</span>
+            <span className="text-gray-300">Product Development</span> */}
+              </div>
+              {/* Second line: horizontal dividing line */}
+              <div className="md:mt-5 h-[2px] w-[300px] md:w-4xl rounded-sm bg-gradient-to-r from-background via-gray-300 to-transparent"></div>
+            </nav>
             <Typography
               variant="h3"
               fontWeight="bold"

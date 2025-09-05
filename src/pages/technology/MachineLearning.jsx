@@ -14,116 +14,8 @@ import TimelineIcon from "@mui/icons-material/Timeline";
 import FunctionsIcon from "@mui/icons-material/Functions";
 import MemoryIcon from "@mui/icons-material/Memory";
 import { useNavigate } from "react-router-dom";
-
-// DATA OBJECT FOR SECTION CONTENT
-const machineLearningArticle = {
-  title: "Machine Learning",
-  sections: [
-    {
-      heading: "What is Machine Learning?",
-      content: (
-        <>
-          <span>
-            <Link href="https://en.wikipedia.org/wiki/Machine_learning" target="_blank" underline="hover" rel="noopener noreferrer">
-              Machine Learning (ML)
-            </Link>{" "}
-            is a subset of artificial intelligence focused on building algorithms and models that enable computers to learn from data and make predictions or decisions without being explicitly programmed for each specific task. ML systems automatically improve their performance as they are exposed to more data. Modern machine learning is used for applications including recommendation engines, fraud detection, speech recognition, predictive maintenance, and image classification.
-          </span>
-        </>
-      )
-    },
-    {
-      heading: "Why is Machine Learning Important?",
-      content: (
-        <>
-          <span>
-            Machine learning helps organizations extract actionable insights from massive data sets, automate complex decision processes, and develop predictive models that drive efficiency and innovation. According to research from <Link href="https://www.gartner.com/en/information-technology/glossary/machine-learning-ml" target="_blank" underline="hover" rel="noopener noreferrer">Gartner</Link> and <Link href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/the-executives-ai-playbook" target="_blank" underline="hover" rel="noopener noreferrer">McKinsey</Link>, ML adoption delivers:
-            <ul className="list-disc pl-6 mt-2 mb-2">
-              <li>Revenue growth via personalization (retail, streaming, advertising)</li>
-              <li>Operational automation and cost reduction in logistics, manufacturing, and IT</li>
-              <li>Enhanced risk management and fraud detection for banking and insurance</li>
-              <li>Faster, more accurate diagnostics and patient outcomes in healthcare</li>
-              <li>Real-time anomaly detection and preventive maintenance in IoT and industrial systems</li>
-            </ul>
-          </span>
-        </>
-      )
-    },
-    {
-      heading: "How Does Machine Learning Work?",
-      content: (
-        <>
-          <span>
-            Machine learning uses statistical algorithms, data processing, and computing power to create predictive or descriptive models. The core process includes:
-            <ul className="list-disc pl-6 mt-2 mb-2">
-              <li>
-                <strong>Data collection & preparation:</strong> Gathering, cleaning, and formatting large, relevant datasets from business applications, devices, or external sources.
-              </li>
-              <li>
-                <strong>Model selection & training:</strong> Using methods such as <Link href="https://en.wikipedia.org/wiki/Supervised_learning" target="_blank" underline="hover" rel="noopener noreferrer">supervised</Link>, <Link href="https://en.wikipedia.org/wiki/Unsupervised_learning" target="_blank" underline="hover" rel="noopener noreferrer">unsupervised</Link>, or <Link href="https://en.wikipedia.org/wiki/Reinforcement_learning" target="_blank" underline="hover" rel="noopener noreferrer">reinforcement learning</Link>, ML models are trained on historical input/output data to learn patterns.
-              </li>
-              <li>
-                <strong>Evaluation & tuning:</strong> Testing model accuracy and tuning hyperparameters to avoid overfitting or bias, typically using a separate validation dataset.
-              </li>
-              <li>
-                <strong>Deployment & monitoring:</strong> Integrating models into business processes or digital services; using <Link href="https://en.wikipedia.org/wiki/MLOps" target="_blank" underline="hover" rel="noopener noreferrer">MLOps</Link> to automate retraining, scaling, and monitoring for constantly improving results.
-              </li>
-            </ul>
-          </span>
-        </>
-      )
-    },
-    {
-      heading: "Key Features & Capabilities",
-      content: [
-        <>Data processing pipelines for structured and unstructured sources</>,
-        <>Custom model development using regression, classification & clustering</>,
-        <>Automated machine learning for rapid prototyping and deployment</>,
-        <>Scalable real-time inference and batch prediction</>,
-        <>MLOps tools for continuous integration, delivery, and monitoring of ML solutions</>,
-        <>Enterprise-grade security, privacy, and compliance for machine learning workflows</>
-      ]
-    },
-    {
-      heading: "Real-World Usage & Examples",
-      content: (
-        <>
-          <span>
-            Machine learning is a foundation for digital transformation across industries:
-            <ul className="list-disc pl-6 mt-2 mb-2">
-              <li>
-                <Link href="https://en.wikipedia.org/wiki/Spotify" target="_blank" underline="hover" rel="noopener noreferrer">Spotify</Link> leverages ML for music recommendations and playlist personalization.
-              </li>
-              <li>
-                <strong>Manufacturing:</strong> Supervisory control and predictive maintenance reduce downtime by predicting equipment failures before they occur.
-              </li>
-              <li>
-                <strong>Healthcare:</strong> ML models analyze medical images, electronic health records, and genomics to improve diagnostics and treatment recommendations.
-              </li>
-              <li>
-                <strong>Finance:</strong> Credit risk assessment and automated fraud alerting using real-time ML algorithms.
-              </li>
-              <li>
-                <strong>Supply Chain:</strong> Demand prediction and inventory optimization for global retailers.
-              </li>
-            </ul>
-          </span>
-        </>
-      )
-    },
-    {
-      heading: "Typical Usage Scenarios",
-      content: [
-        <>Dynamic pricing and real-time recommendation engines</>,
-        <>Predictive maintenance for equipment and vehicles</>,
-        <>Automated document classification and data extraction</>,
-        <>Speech-to-text, voice assistants, and language translation</>,
-        <>Customer segmentation for targeted marketing</>,
-        <>AI-powered security and fraud detection systems</>
-      ]
-    }
-  ]
-};
+import { machineLearningArticle } from "../../data/TechnologyData";
+import mlImg from '../../assets/ml.png'
 
 export default function MachineLearning() {
   const navigate = useNavigate();
@@ -132,7 +24,22 @@ export default function MachineLearning() {
 
       {/* Hero Section */}
       <section className="py-22 md:py-20  md:pt-35 bg-gradient-to-r from-blue-100 via-blue-50 to-white px-8 text-center w-full mx-auto">
-        <h1 className="text-primary tracking-tight font-bold drop-shadow-lg" style={{ fontSize: 'var(--font-size-title)' }}>
+
+        {/* Breadcrumb Navigation - fixed top left corner within the div */}
+        <nav className="absolute top-26 md:top-25 md:left-23 text-text-primary text-xl uppercase ">
+          {/* First line: breadcrumb links separated by slash */}
+          <div className="flex space-x-3">
+            <a>
+              What We Do
+            </a>
+            <span>/</span>
+            <span>Technology</span>
+          </div>
+          {/* Second line: horizontal dividing line */}
+          <div className="md:mt-5 h-[2px] w-[300px] md:w-4xl rounded-sm bg-gradient-to-r from-gray-500 via-gray-300 to-transparent"></div>
+        </nav>
+
+        <h1 className="text-primary pt-15 tracking-tight font-bold drop-shadow-lg" style={{ fontSize: 'var(--font-size-title)' }}>
           Machine Learning for Business Growth
         </h1>
         <p className="mt-4 text-text-primary italic" style={{ fontSize: 'var(--font-size-description)' }}>
@@ -140,7 +47,7 @@ export default function MachineLearning() {
         </p>
         <Box
           component="img"
-          src="public/ml.png"
+          src={mlImg}
           alt="Machine Learning"
           className="mx-auto mb-4 mt-5 md:mt-10 max-h-72"
         />

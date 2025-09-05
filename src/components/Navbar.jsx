@@ -2,17 +2,15 @@ import React, {
     useState,
     useRef,
     useEffect,
-    useMemo,
     useCallback,
 } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import * as FaIcons from "react-icons/fa";
-import { Button } from "@mui/material";
-import { FiArrowRightCircle, FiMoon, FiSun } from "react-icons/fi";
+import { FiArrowRightCircle } from "react-icons/fi";
 import { GoArrowUpRight } from "react-icons/go";
-import { div } from "framer-motion/client";
 import { useLocation } from "react-router-dom";
+import logoImg from '../assets/logo.png'
 
 // NAV_ITEMS and NAV_DETAILS are large and static - use useMemo for top-level performance
 const NAV_ITEMS = {
@@ -130,12 +128,12 @@ const NAV_ITEMS = {
             ],
         },
         {
-            title: "Awards & Recognition",
+            title: "Events",
             icon: FaIcons.FaNetworkWired,
             description: [
                 {
-                    label: "Awards & Recognition",
-                    link: "/awards",
+                    label: "Events",
+                    link: "/event",
                     icon: FaIcons.FaQuoteRight,
                 },
                 // { label: "Case studies", link: "#", icon: FaIcons.FaChartBar },
@@ -150,19 +148,6 @@ const NAV_ITEMS = {
             ],
         },
     ],
-};
-
-const NAV_DETAILS = {
-    "What We Do": {
-        image: "/public/img1.png",
-        description:
-            "This image depicts a business meeting or presentation taking place in a modern conference room...",
-    },
-    "Who We Are": {
-        image: "/public/img2.png",
-        description:
-            "This close-up image focuses on two individuals collaborating or working together...",
-    },
 };
 
 const navExtras = [
@@ -285,7 +270,7 @@ function Dropdown({ section, onClose, setActiveNavLink }) {
                                         <Link
                                             key={i}
                                             to={desc.link}
-                                            className="group flex items-center gap-4 text-text-primary hover:text-primary transition"
+                                            className="group bg-blue-100 w-72 p-2  flex items-center gap-4 text-text-primary hover:text-primary transition"
                                             onClick={() => {
                                                 setActiveNavLink(section); // set main nav active to current section
                                                 onClose();
@@ -385,22 +370,62 @@ function Dropdown({ section, onClose, setActiveNavLink }) {
     );
 }
 
+
+function getActiveMainNavKey(pathname) {
+    return Object.keys(NAV_ITEMS).find(navKey =>
+        NAV_ITEMS[navKey].some(item =>
+            Array.isArray(item.description) &&
+            item.description.some(desc => desc.link === pathname)
+        )
+    );
+}
+
+
+
 export default function Navbar() {
     const [activeDropdownName, setactiveDropdownName] = useState(null);
     const [activeNavLink, setActiveNavLink] = useState(null);
-    const [isDark, setIsDark] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [mobileSubmenuOpen, setMobileSubmenuOpen] = useState(null);
     const location = useLocation();
     const isHomePage = location.pathname === "/";
+    const [currentActiveNav, setCurrentActiveNav] = useState(null);
+
+
+    useEffect(() => {
+        function isPathInNav(navKey) {
+            if (!navKey) return false;
+            const navItems = NAV_ITEMS[navKey];
+            if (!navItems) return false;
+            return navItems.some(item =>
+                Array.isArray(item.description) &&
+                item.description.some(desc => desc.link === location.pathname)
+            );
+        }
+
+        const activeNavByRoute = getActiveMainNavKey(location.pathname);
+
+        // If route has changed, update currentActiveNav
+        if (activeNavByRoute !== currentActiveNav) {
+            setCurrentActiveNav(activeNavByRoute);
+        }
+
+        // Do not clear currentActiveNav when dropdown is toggled
+        // Add extra safeguard if needed here to prevent clearing on dropdown toggle
+    }, [location.pathname]);
+
+
+
+
+
+
+
+
 
     const toggleMobileSubmenu = (key) => {
         setMobileSubmenuOpen(prev => (prev === key ? null : key));
     };
-
-
-
 
     useEffect(() => {
         if (isMobileMenuOpen) {
@@ -416,8 +441,6 @@ export default function Navbar() {
         };
     }, [isMobileMenuOpen]);
 
-
-
     // Scroll effect
     useEffect(() => {
         function handleScroll() {
@@ -429,14 +452,37 @@ export default function Navbar() {
 
     // Handlers (memoized for props optimization if passed down)
     const handleMainNavClick = useCallback((item) => {
-        setactiveDropdownName((prev) => (prev === item ? null : item));
-        setActiveNavLink((prev) => (prev === item ? null : item));
+        // Allow toggling dropdown open/close
+        setactiveDropdownName(prev => (prev === item ? null : item));
+
+        // Do NOT clear currentActiveNav here; it stays based on active route
+        // If you want highlight on clicked nav (regardless of route), you can set currentActiveNav(item);
     }, []);
+
 
     const clearAllDropdowns = useCallback(() => {
         setactiveDropdownName(null);
         setActiveNavLink(null);
+        window.scrollTo({ top: 0, behavior: 'smooth' })
     }, []);
+
+
+    useEffect(() => {
+        const activeNav = getActiveMainNavKey(location.pathname);
+        setCurrentActiveNav(activeNav || null);
+    }, [location.pathname]);
+
+
+
+    useEffect(() => {
+        const extrasActive = navExtras.find(item => item.to === location.pathname);
+        if (extrasActive) {
+            setActiveNavLink(extrasActive.label);
+        } else if (!currentActiveNav) {
+            setActiveNavLink(null);
+        }
+    }, [location.pathname, currentActiveNav]);
+
 
 
 
@@ -448,12 +494,6 @@ export default function Navbar() {
 
     return (
         <header className="fixed top-0 left-0 w-full z-100 transition-colors duration-300">
-            {/* <div
-                className={`flex items-center justify-between md:px-15 transition duration-300 font-family-base ${activeDropdownName || isScrolled //|| activeNavLink
-                    ? "bg-background  transition-colors duration-400"
-                    : "bg-transparent text-gray-200 hover:text-text-primary hover:bg-background"
-                    }`}
-            > */}
             <div
                 className={`flex items-center justify-between md:px-15 transition duration-300 font-family-base
                     ${
@@ -470,7 +510,7 @@ export default function Navbar() {
                 {/* Logo */}
                 <Link to="/" className="flex items-center cursor-pointer"
                     onClick={clearAllDropdowns}>
-                    <img src="/public/logo/logo.png" alt="Logo" className="h-22 w-auto" />
+                    <img src={logoImg} alt="Logo" className="h-22 w-auto" />
                     <div className="flex flex-col leading-tight hover:text-text-primary">
                         <span
                             className="font-bold "
@@ -481,7 +521,7 @@ export default function Navbar() {
                             RSquareSoft Technologies
                         </span>
                         <span
-                            className="hover:text-text-secondary hidden md:inline"
+                            className="hover:text-text-secondary hidden lg:inline"
                             style={{
                                 fontSize: "var(--font-size-description)",
                             }}
@@ -499,7 +539,7 @@ export default function Navbar() {
                     }}
                 >
                     {Object.keys(NAV_ITEMS).map((item) => {
-                        const isActive = activeNavLink === item;
+                        const isActive = currentActiveNav === item || activeDropdownName === item;
                         return (
                             <div
                                 key={item}
@@ -540,7 +580,7 @@ export default function Navbar() {
                                     className={` cursor-pointer px-1  ${isActive
                                         ? "text-primary after:scale-x-100"
                                         : ""
-                                        } ${!isActive && "group-hover:text-primary"
+                                        } ${!isActive && "group-hover:text-primary "
                                         } after:content-[''] after:block after:h-[3px] after:bg-secondary after:scale-x-0 after:transition-transform after:duration-300 after:origin-left ${!isActive && "group-hover:after:scale-x-100"
                                         }`}
                                 >
@@ -552,7 +592,7 @@ export default function Navbar() {
                 </nav>
                 {/* Button + Theme */}
                 <div className="flex items-center space-x-2">
-                    <button
+                    {/* <button
                         onClick={() => setIsDark((d) => !d)}
                         className="p-2  border-primary rounded-full text-primary hover:bg-primary hover:text-button-text transition-all duration-300 cursor-pointer"
                         aria-label="Toggle Theme"
@@ -562,7 +602,7 @@ export default function Navbar() {
                         ) : (
                             <FiMoon className="h-5 w-5" />
                         )}
-                    </button>
+                    </button> */}
 
                     {/* Hamburger for mobile */}
                     <button
@@ -580,7 +620,7 @@ export default function Navbar() {
                         section={activeDropdownName}
                         onClose={() => {
                             setactiveDropdownName(null);
-                            setActiveNavLink(null);
+                            // setActiveNavLink(null);
                         }}
                         setActiveNavLink={setActiveNavLink}
                     />
@@ -610,7 +650,7 @@ export default function Navbar() {
             >
                 <div className="flex items-center justify-between px-4 py-4 border-b border-border">
                     {/* <span className="text-primary font-semibold" style={{ fontSize: 'var(--font-size-subheading)' }}>Menu</span> */}
-                    <img src="/public/logo/logo.png" alt="RSquareSoft" className="h-10 w-auto" />
+                    <img src={logoImg} alt="RSquareSoft" className="h-10 w-auto" />
                     <button onClick={() => setIsMobileMenuOpen(false)} aria-label="Close Menu" >
                         <FaIcons.FaTimes className="text-primary h-6 w-6" />
                     </button>
@@ -711,469 +751,3 @@ export default function Navbar() {
         </header >
     );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React, {
-//   useState,
-//   useRef,
-//   useEffect,
-//   useCallback,
-// } from "react";
-// import { Link, useLocation } from "react-router-dom";
-// import { motion, AnimatePresence } from "framer-motion";
-// import * as FaIcons from "react-icons/fa";
-// import { FiArrowRightCircle, FiMoon, FiSun } from "react-icons/fi";
-// import { GoArrowUpRight } from "react-icons/go";
-
-// const NAV_ITEMS = {
-//   "What We Do": [
-//     {
-//       title: "Quick Look",
-//       icon: FaIcons.FaGlobe,
-//       subTitle: "Driving innovation across every digital frontier.",
-//       description:
-//         "At RSquare Soft, we transform visions into reality by What We Do: offering a comprehensive suite of services, developing impactful products, and leveraging cutting-edge technologies to empower businesses",
-//       points: [
-//         {
-//           p1: "Services",
-//           desc1:
-//             "We provide end-to-end solutions, including product development, web & mobile app development.",
-//           p2: "Products",
-//           desc2:
-//             "Our innovative in-house products like ValetPlus, Karmika, TakuMi, and CP address diverse industry needs.",
-//           p3: "Technology",
-//           desc3:
-//             "Our expertise in enterprise products, cloud computing, artificial intelligence, data analytics, and machine learning, forming the advanced technical backbone of our offerings.",
-//         },
-//       ],
-//     },
-//     {
-//       title: "Services",
-//       icon: FaIcons.FaCog,
-//       description: [
-//         { label: "Product Development", link: "/productDev", icon: FaIcons.FaLaptopCode },
-//         { label: "Pod Model (Fixed Price)", link: "/podModel", icon: FaIcons.FaCubes },
-//         { label: "Time and Material Model", link: "/timeMaterial", icon: FaIcons.FaClock },
-//       ],
-//     },
-//     {
-//       title: "Products",
-//       icon: FaIcons.FaTools,
-//       description: [
-//         { label: "ValetPlus", link: "/valetplus", icon: FaIcons.FaCar },
-//         { label: "Karmika", link: "/karmika", icon: FaIcons.FaHardHat },
-//         { label: "TakuMi", link: "/takumi", icon: FaIcons.FaChartPie },
-//         { label: "CP", link: "/cp", icon: FaIcons.FaUsers },
-//       ],
-//     },
-//     {
-//       title: "Technology",
-//       icon: FaIcons.FaBrain,
-//       description: [
-//         { label: "Enterprise Products", link: "/enterpriseProduct", icon: FaIcons.FaDatabase },
-//         { label: "Cloud Expertise", link: "/cloudExpertise", icon: FaIcons.FaCloud },
-//         { label: "Artificial Intelligence", link: "/ai", icon: FaIcons.FaRobot },
-//         { label: "Data Analytics", link: "/dataAnalytics", icon: FaIcons.FaChartLine },
-//         { label: "Machine Learning", link: "/ml", icon: FaIcons.FaBrain },
-//       ],
-//     },
-//   ],
-//   "Who We Are": [
-//     {
-//       title: "Quick Look",
-//       icon: FaIcons.FaChartLine,
-//       subTitle: "Innovation is a relentless journey of discovery.",
-//       description:
-//         "Who We Are: We are RSquare Soft – a team of innovators defining the future through technology. This section highlights our identity, journey, and impact.",
-//       points: [
-//         {
-//           p1: "About Us",
-//           desc1:
-//             "Explore our company's history, core values, and the leadership team guiding our vision.",
-//           p2: "Success Stories",
-//           desc2:
-//             "Discover how our solutions have driven real-world value through client testimonials and case studies.",
-//           p3: "Newsroom",
-//           desc3:
-//             "Get the latest updates on RSquare Soft, including press releases and media coverage.",
-//         },
-//       ],
-//     },
-//     {
-//       title: "About Us",
-//       icon: FaIcons.FaDatabase,
-//       description: [
-//         { label: "About Us", link: "/aboutUs", icon: FaIcons.FaRegNewspaper },
-//       ],
-//     },
-//     {
-//       title: "Awards & Recognition",
-//       icon: FaIcons.FaNetworkWired,
-//       description: [
-//         { label: "Awards & Recognition", link: "/awards", icon: FaIcons.FaQuoteRight },
-//       ],
-//     },
-//     {
-//       title: "Newsroom",
-//       icon: FaIcons.FaGlobe,
-//       description: [
-//         { label: "Press releases", link: "#", icon: FaIcons.FaRegNewspaper },
-//         { label: "Media coverage", link: "#", icon: FaIcons.FaChartLine },
-//       ],
-//     },
-//   ],
-// };
-
-// const navExtras = [
-//   { label: "Insights", to: "/insights" },
-//   { label: "Careers", to: "/careers" },
-// ];
-
-// function Dropdown({section, onClose}) {
-//   // Implement dropdown rendering for desktop here if needed
-//   // For the requirement: open dropdown only on navlink click, here showed empty to avoid auto open on navlink click.
-//   return null; // or your dropdown JSX if you want dropdown visible
-// }
-
-// export default function Navbar() {
-//   const [activeDropdownName, setActiveDropdownName] = useState(null);
-//   const [activeNavLink, setActiveNavLink] = useState(null);
-//   const [isDark, setIsDark] = useState(false);
-//   const [isScrolled, setIsScrolled] = useState(false);
-//   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-//   const location = useLocation();
-
-//   // Scroll effect for background and hover background on home
-//   useEffect(() => {
-//     function handleScroll() {
-//       setIsScrolled(window.scrollY > 5);
-//     }
-//     window.addEventListener("scroll", handleScroll);
-//     return () => window.removeEventListener("scroll", handleScroll);
-//   }, []);
-
-//   // Update activeNavLink on route change to highlight navlink and dropdown (top-level only)
-//   useEffect(() => {
-//     // Check navExtras first (standalone links)
-//     const extrasMatch = navExtras.find(item => item.to === location.pathname);
-//     if (extrasMatch) {
-//       setActiveNavLink(extrasMatch.label);
-//       setActiveDropdownName(null);
-//       return;
-//     }
-//     // Check if any dropdown sub-link matches current path
-//     const dropdownMatch = Object.entries(NAV_ITEMS).find(([section, items]) =>
-//       items.some(item =>
-//         Array.isArray(item.description) &&
-//         item.description.some(desc => desc.link === location.pathname)
-//       )
-//     );
-//     if (dropdownMatch) {
-//       setActiveDropdownName(dropdownMatch[0]);
-//       setActiveNavLink(dropdownMatch[0]);
-//     } else {
-//       // Home page or no match resets
-//       if (location.pathname === "/") {
-//         setActiveDropdownName(null);
-//         setActiveNavLink(null);
-//       }
-//     }
-//   }, [location]);
-
-//   // Handle top-level nav click: open dropdown or close if already open
-//   const handleMainNavClick = useCallback((item) => {
-//     if (activeDropdownName === item) {
-//       setActiveDropdownName(null);
-//       setActiveNavLink(null);
-//     } else {
-//       setActiveDropdownName(item);
-//       setActiveNavLink(item);
-//     }
-//   }, [activeDropdownName]);
-
-//   // Close nav on navExtras click (Insights, Careers)
-//   const handleExtrasClick = useCallback((label) => {
-//     setActiveNavLink(label);
-//     setActiveDropdownName(null);
-//     setIsMobileMenuOpen(false);
-//   }, []);
-
-//   // Close all
-//   const clearAllDropdowns = useCallback(() => {
-//     setActiveDropdownName(null);
-//     setActiveNavLink(null);
-//   }, []);
-
-//   // Mobile Sidebar toggle
-//   const toggleMobileMenu = () => {
-//     setIsMobileMenuOpen((prev) => !prev);
-//   };
-
-//   // Mobile menu closes dropdowns on negative space click
-//   const handleMobileOverlayClick = () => setIsMobileMenuOpen(false);
-
-//   return (
-//     <header className="fixed top-0 left-0 w-full z-100 transition-colors duration-300">
-//       <div
-//         className={`flex items-center justify-between md:px-15 transition duration-300 font-family-base ${
-//           (activeDropdownName || activeNavLink || isScrolled) && location.pathname !== "/"
-//             ? "bg-background transition-colors duration-400"
-//             : `bg-transparent text-gray-200 hover:text-text-primary hover:bg-background ${
-//               location.pathname === "/" ? "hover:bg-background" : ""
-//             }`
-//         }`}
-//       >
-//         {/* Logo */}
-//         <Link to="/" className="flex items-center cursor-pointer">
-//           <img src="/public/logo/logo.png" alt="Logo" className="h-22 w-auto" />
-//           <div className="flex flex-col leading-tight hover:text-text-primary">
-//             <span className="font-bold" style={{ fontSize: "var(--font-size-heading)" }}>
-//               RSquareSoft Technologies
-//             </span>
-//             <span
-//               className="hover:text-text-secondary hidden md:inline"
-//               style={{ fontSize: "var(--font-size-description)" }}
-//             >
-//               Delivering Best-in-Class Technology
-//             </span>
-//           </div>
-//         </Link>
-
-//         {/* Main Nav */}
-//         <nav className="hidden md:flex space-x-10 relative pt-5" style={{ fontSize: "var(--font-size-subheading)" }}>
-//           {Object.keys(NAV_ITEMS).map(item => {
-//             const isActive = activeNavLink === item;
-//             const isDropdownOpen = activeDropdownName === item;
-//             return (
-//               <div key={item} className="relative group cursor-pointer"
-//                 onClick={() => handleMainNavClick(item)}
-//                 onMouseEnter={() => setActiveDropdownName(item)}
-//                 onMouseLeave={() => setActiveDropdownName(null)}
-//               >
-//                 <span
-//                   className={`flex items-center gap-1 px-1 transition-colors duration-300 select-none
-//                     ${isActive ? "text-primary after:scale-x-100" : "hover:text-text-primary"}
-//                     ${!isActive && "group-hover:text-primary"}
-//                     after:content-[''] after:block after:h-[3px] after:bg-secondary after:scale-x-0
-//                     after:transition-transform after:duration-300 after:origin-left
-//                     ${!isActive && "group-hover:after:scale-x-100"}
-//                     `}
-//                 >
-//                   {item}
-//                   <FaIcons.FaChevronDown
-//                     className={`w-3 h-3 mt-1 transition-transform duration-300 ${isDropdownOpen ? "rotate-180 text-primary" : "rotate-0"}`}
-//                   />
-//                 </span>
-
-//                 {/* Dropdown now shown on hover or activeDropdownName */}
-//                 <AnimatePresence>
-//                   {isDropdownOpen && (
-//                     <motion.div
-//                       initial={{ opacity: 0, y: -10 }}
-//                       animate={{ opacity: 1, y: 0 }}
-//                       exit={{ opacity: 0, y: -10 }}
-//                       transition={{ duration: 0.3 }}
-//                       className="absolute left-0 top-full w-screen max-w-xl bg-background shadow-lg z-50 mt-2 p-6 font-family-base border border-border rounded"
-//                       onMouseEnter={() => setActiveDropdownName(item)}
-//                       onMouseLeave={() => setActiveDropdownName(null)}
-//                     >
-//                       {/* You can render dropdown items here (omitted for brevity) */}
-//                       {/* Example: list of dropdown sub-items */}
-//                       {/* For simplicity just showing titles */}
-//                       <ul>
-//                         {NAV_ITEMS[item].map((subItem, idx) => {
-//                           if (Array.isArray(subItem.description)) {
-//                             return subItem.description.map((desc, i) => {
-//                               if (!desc.link) return null;
-//                               return (
-//                                 <li key={`${idx}-${i}`} className="mb-2">
-//                                   <Link to={desc.link}
-//                                     className="text-text-primary hover:text-primary transition"
-//                                     onClick={() => {
-//                                       setActiveDropdownName(null);
-//                                       clearAllDropdowns();
-//                                     }}
-//                                   >
-//                                     {desc.label}
-//                                   </Link>
-//                                 </li>
-//                               );
-//                             });
-//                           }
-//                           return (
-//                             <li key={idx} className="mb-2">
-//                               <span className="text-text-primary font-semibold">{subItem.title}</span>
-//                             </li>
-//                           );
-//                         })}
-//                       </ul>
-//                     </motion.div>
-//                   )}
-//                 </AnimatePresence>
-//               </div>
-//             );
-//           })}
-
-//           {navExtras.map(item => {
-//             const isActive = activeNavLink === item.label;
-//             return (
-//               <Link
-//                 key={item.label}
-//                 to={item.to}
-//                 className="relative group"
-//                 onClick={() => {
-//                   clearAllDropdowns();
-//                   setActiveNavLink(item.label);
-//                 }}
-//                 style={{ textDecoration: "none" }}
-//               >
-//                 <span
-//                   className={`cursor-pointer px-1 transition-colors duration-300 ${
-//                     isActive ? "text-primary after:scale-x-100" : ""
-//                   } ${
-//                     !isActive && "group-hover:text-primary"
-//                   } after:content-[''] after:block after:h-[3px] after:bg-secondary after:scale-x-0 after:transition-transform after:duration-300 after:origin-left ${
-//                     !isActive && "group-hover:after:scale-x-100"
-//                   }`}
-//                 >
-//                   {item.label}
-//                 </span>
-//               </Link>
-//             );
-//           })}
-//         </nav>
-
-//         {/* Theme toggle and mobile hamburger */}
-//         <div className="flex items-center space-x-2">
-//           <button
-//             onClick={() => setIsDark(d => !d)}
-//             className="p-2 border-primary rounded-full text-primary hover:bg-primary hover:text-button-text transition-all duration-300 cursor-pointer"
-//             aria-label="Toggle Theme"
-//           >
-//             {!isDark ? <FiSun className="h-5 w-5" /> : <FiMoon className="h-5 w-5" />}
-//           </button>
-
-//           <button
-//             className="md:hidden p-2 mr-4"
-//             aria-label="Open Menu"
-//             onClick={() => setIsMobileMenuOpen(true)}
-//           >
-//             <FaIcons.FaBars className="h-6 w-6 text-secondary" />
-//           </button>
-//         </div>
-//       </div>
-
-//       {/* Mobile Sidebar */}
-//       <AnimatePresence>
-//         {isMobileMenuOpen && (
-//           <>
-//             <motion.div
-//               initial={{ opacity: 0 }}
-//               animate={{ opacity: 1 }}
-//               exit={{ opacity: 0 }}
-//               onClick={() => setIsMobileMenuOpen(false)}
-//               className="fixed inset-0 backdrop-blur-sm z-[110]"
-//               style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }}
-//             />
-//             <motion.aside
-//               initial={{ x: "100%" }}
-//               animate={{ x: 0 }}
-//               exit={{ x: "100%" }}
-//               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-//               className="fixed top-0 right-0 h-full w-70 bg-background z-[120] shadow-lg overflow-y-auto"
-//             >
-//               <div className="flex items-center justify-between px-4 py-4 border-b border-border sticky top-0 bg-background z-50">
-//                 <img src="/public/logo/logo.png" alt="RSquareSoft" className="h-10 w-auto" />
-//                 <button onClick={() => setIsMobileMenuOpen(false)} aria-label="Close Menu">
-//                   <FaIcons.FaTimes className="text-primary h-6 w-6" />
-//                 </button>
-//               </div>
-
-//               <nav className="flex flex-col p-4 space-y-4" style={{ fontSize: "var(--font-size-subheading)" }}>
-//                 {Object.keys(NAV_ITEMS).map(section => (
-//                   <div key={section}>
-//                     <h3 className="text-primary font-semibold mb-2" style={{ fontSize: "var(--font-size-subheading)" }}>
-//                       {section}
-//                     </h3>
-//                     <ul>
-//                       {NAV_ITEMS[section].map((item, idx) => {
-//                         const hasSubLinks = Array.isArray(item.description) && item.description.some(desc => desc.link);
-//                         if (!hasSubLinks) {
-//                           return (
-//                             <li key={`${section}-${item.title}`} className="pl-4 py-2 text-text-primary">
-//                               <Link
-//                                 to={item.description?.[0]?.link || "#"}
-//                                 onClick={() => setIsMobileMenuOpen(false)}
-//                               >
-//                                 {item.title}
-//                               </Link>
-//                             </li>
-//                           );
-//                         }
-//                         return (
-//                           <li key={`${section}-${item.title}`} className="pl-4 py-2">
-//                             <span className="font-medium text-text-primary">{item.title}</span>
-//                             <ul className="ml-6 mt-2 space-y-2">
-//                               {item.description.map((desc, i) =>
-//                                 desc.link ? (
-//                                   <li key={i}>
-//                                     <Link
-//                                       to={desc.link}
-//                                       className="text-text-primary hover:text-primary"
-//                                       onClick={() => setIsMobileMenuOpen(false)}
-//                                     >
-//                                       {desc.label}
-//                                     </Link>
-//                                   </li>
-//                                 ) : null
-//                               )}
-//                             </ul>
-//                           </li>
-//                         );
-//                       })}
-//                     </ul>
-//                   </div>
-//                 ))}
-
-//                 <div>
-//                   <ul>
-//                     {navExtras.map(item => (
-//                       <li key={item.label} className="py-2">
-//                         <Link
-//                           to={item.to}
-//                           className="text-primary hover:text-primary font-semibold"
-//                           onClick={() => setIsMobileMenuOpen(false)}
-//                           style={{ fontSize: "var(--font-size-subheading)" }}
-//                         >
-//                           {item.label}
-//                         </Link>
-//                       </li>
-//                     ))}
-//                   </ul>
-//                 </div>
-//               </nav>
-//             </motion.aside>
-//           </>
-//         )}
-//       </AnimatePresence>
-//     </header>
-//   );
-// }

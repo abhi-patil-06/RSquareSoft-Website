@@ -1,113 +1,128 @@
 import React from 'react'
-import { Button, Card, CardContent, Typography } from '@mui/material'
+import {Box, Button, Card, CardContent, Typography } from '@mui/material'
 import { ArrowForward, Star, Build, Security, VerifiedUser } from '@mui/icons-material'
 import { TbTarget } from 'react-icons/tb'
 import { useNavigate } from 'react-router-dom'
+import { processSteps, benefits, useCases, faqs } from '../../data/serviceData/podModelData';
+import podModelImg from "../../assets/podModel.jpeg"
 
-
-// POD Model Steps
-const processSteps = [
-  {
-    title: "Requirement Mapping",
-    icon: <TbTarget size={28} color="#167efb" />,
-    description: "In-depth discovery sessions to align scope, deliverables, and timelines."
-  },
-  {
-    title: "POD Onboarding",
-    icon: <VerifiedUser sx={{ color: "#2563eb" }} />,
-    description: "Deployment of a tailored, multidisciplinary team as a self-managed POD."
-  },
-  {
-    title: "Sprints & Milestones",
-    icon: <Build color="primary" />,
-    description: "Execution via regular sprints, aligned with client milestones and demos."
-  },
-  {
-    title: "Quality Assurance",
-    icon: <Security sx={{ color: "#60a5fa" }} />,
-    description: "Continuous QA and transparent progress tracking across the lifecycle."
-  },
-  {
-    title: "UAT & Delivery",
-    icon: <ArrowForward sx={{ color: "#0891b2" }} />,
-    description: "User Acceptance Testing before fixed-price, milestone-based deliveries."
-  },
-  {
-    title: "Support & Transition",
-    icon: <Star sx={{ color: "#1e40af" }} />,
-    description: "Knowledge transfer, hypercare, and warranty support post-launch."
-  }
-];
-
-// POD Model Benefits
-const benefits = [
-  { icon: <VerifiedUser sx={{ color: "#2563eb" }} />, title: "Predictable Budgeting", description: "Scope, timeline, and price are locked up-front—no surprises or overruns." },
-  { icon: <Build sx={{ color: "#167efb" }} />, title: "Dedicated POD Team", description: "A self-governing skilled unit focused on your outcomes, not task-based hours." },
-  { icon: <Star sx={{ color: "#60a5fa" }} />, title: "Accountability & Transparency", description: "Single-point responsibility for delivery, unrivaled process rigor, and real-time reporting." },
-];
-
-// Use Case Examples (POD Fixed-Price) - Add `link` if you want routing
-const useCases = [
-  {
-    name: "eHealth Platform Rollout",
-    desc: "End-to-end delivery of a scalable eHealth web portal for a hospital chain—regulatory compliant, highly available, delivered via a dedicated product POD.",
-    img: "/About-Us3.jpg",
-    link: "/ehealth-platform-rollout",
-  },
-  {
-    name: "Banking SaaS Core Upgrade",
-    desc: "Major feature extensions for a fintech SaaS platform, delivered on fixed deadlines by a cross-functional POD team—reduced project risk by 30%.",
-    img: "/Career-Section.jpg",
-    link: "/banking-saas-core-upgrade",
-  },
-  {
-    name: "Insurance Claims Automation",
-    desc: "Migration of claims workflows to a modern cloud-native stack—POD model enabled phased delivery and seamless user transition.",
-    img: "/img1.png",
-    link: "/insurance-claims-automation",
-  },
-  {
-    name: "Global eCommerce Launch",
-    desc: "Multiregion eCommerce launch with fixed scope and staged go-lives, managed by a multi-skill POD for rapid market entry.",
-    img: "/img2.png",
-    link: "/global-ecommerce-launch",
-  },
-];
-
-// POD Model FAQs
-const faqs = [
-  { q: "What is the POD model in fixed-price delivery?", a: "A cross-functional, self-managed team (POD) is allocated to your project under a fixed-price contract, ensuring end-to-end accountability and predictable outcomes." },
-  { q: "Who manages the POD?", a: "You get a dedicated delivery manager and product owner; the POD self-organizes, with robust communication and status reporting." },
-  { q: "What types of projects suit POD fixed price?", a: "Projects with well-defined scope, digital transformation initiatives, MVPs, migrations, SaaS rollouts, and compliance upgrades." },
-  { q: "Are change requests possible?", a: "Scope changes are tracked and quoted transparently; you approve any incremental work before we continue." },
-];
 
 export default function PodFixedPrice() {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-background mt-23 min-h-screen font-family-base">
+    <Box
+      sx={{
+        minHeight: "100vh",
+        width: "100%",
+        py: { xs: '', md: 14 },
+        fontFamily: "var(--font-family-base)",
+        background: 'var(--color-background)',
+      }}
+    >
 
-      {/* Hero Section */}
-      <div
-        className="relative w-full flex flex-col items-center pt-27 pb-27 bg-cover bg-center"
-        style={{
-          backgroundImage: "url('services/podModel.jpeg')",
-          backgroundBlendMode: "overlay",
-          backgroundColor: "rgba(0, 50, 70, 0.5)",
-          backgroundAttachment: "fixed"
-        }}
-      >
-        <h1 className="text-button-text text-center tracking-tight font-bold drop-shadow-lg" style={{ fontSize: 'var(--font-size-title)' }}>
-          POD Model — Fixed Price Excellence
-        </h1>
-        <p className="font-semibold italic text-center text-button-text" style={{ fontSize: 'var(--font-size-subheading)' }}>
-          Self-managed teams for outcome-driven, predictable delivery
-        </p>
-      </div>
+      {/* HERO */}
+      <Box sx={{
+        px: { xs: 2, md: 8 },
+        pt: { xs: 13, md: 0 }
+      }}>
+        <Box
+          sx={{
+            position: "relative",
+            width: "100%",
+            minHeight: { xs: 500, md: 620 },
+            display: "flex",
+            alignItems: "end",
+            justifyContent: "center",
+            backgroundImage: `url(${podModelImg})`,
+            backgroundAttachment: "fixed",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            overflow: "hidden",
+            mb: 5,
+          }}
+        >
+          {/* Overlay */}
+          <Box
+            sx={{
+              position: "absolute",
+              inset: 0,
+              bgcolor: "rgba(0,0,0,0.3)", // semi-transparent white
+
+              zIndex: 1,
+            }}
+          />
+
+
+          {/* Content */}
+          <Box
+            sx={{
+              position: "relative",
+              zIndex: 2,
+              width: { xs: "90%", md: "80%" },
+              textAlign: { xs: "center", md: "left" },
+              // mx: "auto",
+              py: { xs: 5, md: 20 },
+            }}
+          >
+            {/* Breadcrumb Navigation - fixed top left corner within the div */}
+            <nav className="absolute -top-7 md:top-15 text-white font-bold text-lg md:text-2xl uppercase">
+              {/* First line: breadcrumb links separated by slash */}
+              <div className="flex space-x-3">
+                {/* <a>
+                  What We Do
+                </a>
+                <span>/</span> */}
+                <span >Service</span>
+                <span>/</span>
+                <span >POD Model</span>
+              </div>
+              {/* Second line: horizontal dividing line */}
+              <div className="md:mt-5 h-[2px] w-[300px] md:w-4xl rounded-sm bg-gradient-to-r from-background via-gray-300 to-transparent"></div>
+            </nav>
+            <Typography
+              variant="h3"
+              fontWeight="bold"
+              fontSize='var(--font-size-title)'
+              mb={2}
+              color="white"
+              sx={{ letterSpacing: "-0.02em" }}
+            >
+              Driven by passion, powered by innovation
+            </Typography>
+            <Typography variant="h6" mb={3} color="var(--color-button-text)">
+              We are RSquareSoft, dedicated to empowering businesses with advanced technology and exceptional service.
+            </Typography>
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              href="#open-roles"
+              onClick={() => {
+                const section = document.getElementById("pod");
+                if (section) {
+                  const navbarOffset = 80; // Set this to your navbar height
+                  const elementPosition = section.getBoundingClientRect().top + window.pageYOffset;
+                  window.scrollTo({
+                    top: elementPosition - navbarOffset,
+                    behavior: "smooth",
+                  });
+                }
+              }}
+
+              sx={{ boxShadow: 2, borderRadius: "18px", px: 5, py: 1.5, fontSize: "var(--font-size-description)" }}
+            >
+              Explore More
+            </Button>
+          </Box>
+        </Box>
+      </Box>
+
+
+      
 
       {/* Overview + Process */}
-      <div className="max-w-6xl mx-auto py-10 px-4">
+      <div id='pod' className="max-w-6xl mx-auto py-10 px-4">
 
         {/* Service Overview */}
         <div className="mb-12 text-center">
@@ -278,6 +293,6 @@ export default function PodFixedPrice() {
         </Button>
       </div>
 
-    </div>
+    </Box>
   )
 }

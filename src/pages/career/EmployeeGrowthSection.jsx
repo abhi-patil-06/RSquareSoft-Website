@@ -123,9 +123,8 @@ export default function EmployeeGrowthCarousel() {
   return (
     <section
       aria-label="Employee Growth and Development Carousel"
-      className="flex flex-col items-center justify-center px-4 py-10 sm:px-6 lg:px-8"
+      className="flex flex-col font-family-base items-center justify-center px-4 py-10 sm:px-6 lg:px-8"
       style={{
-        fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
         minHeight: "70vh",
         margin: "0 auto",
         width: "100%",

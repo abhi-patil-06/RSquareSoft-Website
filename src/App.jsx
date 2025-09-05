@@ -20,8 +20,6 @@ import MachineLearning from "./pages/technology/MachineLearning";
 import ScrollToTop from "./components/ScrollToTop"
 import CeoInfoSection from "./pages/about/CeoInfoSection";
 import CtoInfoSection from "./pages/about/CtoInfoSection";
-import SuccessStory from "./pages/awards/Awards";
-import AwardsPage from "./pages/awards/Awards";
 import Newsroom from "./pages/newsroom/NewsRoom";
 import Blog from "./pages/insights/Blog";
 import BlogDetail from "./pages/insights/BlogDetail";
@@ -30,6 +28,9 @@ import Loader from "./components/Loader";
 import { useEffect, useState } from "react";
 import ExpertPage from "./components/ExpertPage";
 import ClientContactForm from "./components/ClientContactForm";
+import EventSection from "./pages/event/EventSection";
+import PrivacyPolicy from "./components/PrivacyPolicy";
+import SupportButton from "./components/Support";
 
 function App() {
 
@@ -45,12 +46,13 @@ function App() {
     <Router >
       {loading && <Loader />}
       <ScrollToTop />
+      <SupportButton />
       <Navbar />
 
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/aboutUs" element={<AboutUs />} />
-        <Route path="/awards" element={<AwardsPage />} />
+        <Route path="/event" element={<EventSection />} />
         <Route path="/newsRoom" element={<Newsroom />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:id" element={<BlogDetail />} />
@@ -71,7 +73,8 @@ function App() {
         <Route path="/ceo" element={<CeoInfoSection />} />
         <Route path="/cto" element={<CtoInfoSection />} />
         <Route path="/expert" element={<ExpertPage />} />
-        <Route path="/clientContactForm" element={<ClientContactForm />} />
+        <Route path="/contactForm" element={<ClientContactForm />} />
+        <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
       </Routes>
 
       <ScrollToTopButton />

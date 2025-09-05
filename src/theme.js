@@ -43,6 +43,25 @@ export const theme = {
 
 
 
+export const darkTheme = {
+  fonts: lightTheme.fonts, // keep same fonts
+
+  colors: {
+    primary: '#ff7f32', // orange shade
+    secondary: '#cc5200',
+    textPrimary: '#f5f5f5',
+    textSecondary: '#cccccc',
+    background: '#121212', // dark background
+    buttonBackground: '#ff7f32',
+    buttonHoverBackground: '#e65c00',
+    buttonText: '#ffffff',
+  },
+
+  spacing: lightTheme.spacing,
+};
+
+
+
 
 
 

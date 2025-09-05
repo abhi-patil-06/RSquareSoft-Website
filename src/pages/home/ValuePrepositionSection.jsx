@@ -1,58 +1,19 @@
 import React from "react";
-import { FaUsers, FaLightbulb, FaHeart, FaCheckCircle, FaGlobe, FaComments } from "react-icons/fa";
-
-const values = [
-  {
-    icon: <FaUsers />,
-    title: "Expert Team",
-    description:
-      "Leverage the deep knowledge and diverse expertise of our seasoned professionals dedicated to your success.",
-  },
-  {
-    icon: <FaLightbulb />,
-    title: "Innovative Solutions",
-    description:
-      "Stay ahead with cutting-edge technology and creative strategies tailored to solve your unique challenges.",
-  },
-  {
-    icon: <FaHeart />,
-    title: "Customer Focus",
-    description:
-      "Your goals are our priority. We listen, adapt, and work collaboratively to ensure your vision becomes reality.",
-  },
-  {
-    icon: <FaCheckCircle />,
-    title: "Proven Results",
-    description:
-      "Our track record speaks for itself; we deliver measurable outcomes and tangible growth for our clients.",
-  },
-  {
-    icon: <FaGlobe />,
-    title: "Global Reach",
-    description:
-      "With a global perspective and local presence, we understand diverse markets and deliver solutions worldwide.",
-  },
-  {
-    icon: <FaComments />,
-    title: "Transparent Communication",
-    description:
-      "We maintain open, honest, and regular communication, ensuring you're always informed and involved.",
-  },
-];
+import { whyRSquareSoft } from "../../data/HomeData";
 
 export default function ValuePropositionSection() {
   return (
     <section className="py-16 px-6 bg-background">
       <div className="max-w-6xl mx-auto">
         <p
-          className="font-semibold uppercase tracking-wider text-primary text-center mb-12"
+          className="font-semibold uppercase tracking-wider text-primary text-start mb-12"
           style={{ fontSize: "var(--font-size-subheading)" }}
         >
           — Why RSquareSoft?
         </p>
 
         <div className="relative border-l-4 border-blue-400 pl-10 space-y-12">
-          {values.map((item, index) => (
+          {whyRSquareSoft.map((item, index) => (
             <div key={index} className="relative group">
               {/* Icon Circle */}
               <div className="absolute -left-7 flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-blue-700 text-white shadow-lg group-hover:scale-110 transform transition duration-300">

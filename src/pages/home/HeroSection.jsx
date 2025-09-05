@@ -1,46 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
-import { FaArrowDown, FaChevronDown } from "react-icons/fa";
 import AnimatedArrowButton from "../../components/AnimatedArrowButton";
 import { useNavigate } from "react-router-dom";
+import { heroData } from "../../data/HomeData";
 
-const SLIDES = [
-  {
-    img: "hero-img/img1.png",
-    title: "Empower Your Ideas With AI",
-    subtitle: "Building intelligent solutions for a smarter future.",
-    points: [
-      "Innovative AI Integration",
-      "End-to-End Automation",
-      "Business-Oriented Machine Learning",
-    ],
-    cta: "Discover More",
-    ctaUrl: "/expert",
-  },
-  {
-    img: "hero-img/img2.png",
-    title: "Transform Data Into Intelligence",
-    subtitle: "Unlock powerful insights and become data driven.",
-    points: [
-      "Predictive Analytics",
-      "Actionable Dashboards",
-      "Custom ML Models",
-    ],
-    cta: "Our Services",
-    ctaUrl: "/expert",
-  },
-  {
-    img: "hero-img/img3.png",
-    title: "AI For Every Industry",
-    subtitle: "Reliable, scalable, secure ML solutions from concept to deployment.",
-    points: [
-      "Scalable Cloud Integrations",
-      "Enterprise-Grade Security",
-      "Ongoing Optimization & Support",
-    ],
-    cta: "Contact Experts",
-    ctaUrl: "/expert",
-  },
-];
 
 const SLIDE_DURATION = 9000; // total slide duration including fades (9s)
 const IMAGE_FADE_DURATION = 7000; // image fade duration 7s
@@ -64,7 +26,7 @@ export default function HeroSection() {
 
     // Change slide after total duration
     slideTimeoutRef.current = setTimeout(() => {
-      setActive((prev) => (prev + 1) % SLIDES.length);
+      setActive((prev) => (prev + 1) % heroData.length);
     }, SLIDE_DURATION);
 
     return () => {
@@ -79,17 +41,9 @@ export default function HeroSection() {
 };
 
 
-//  const handleClick = () => {
-//     window.scrollBy({ top: 730, behavior: "smooth" });
-//   };
-const handleClick = () => {
-  const scrollDistance = window.innerWidth < 768 ? 735 : 920;
-  window.scrollBy({ top: scrollDistance, behavior: "smooth" });
-};
-
   return (
     <section className="relative w-full h-205 md:h-[1000px] overflow-hidden select-none">
-      {SLIDES.map(({ img, title, subtitle, points, cta, ctaUrl }, idx) => {
+      {heroData.map(({ img, title, subtitle, points, cta, ctaUrl }, idx) => {
         const isActive = idx === active;
 
         return (
@@ -120,16 +74,6 @@ const handleClick = () => {
               <p className="text-gray-200 text-xl md:text-2xl mb-6 max-w-2xl">
                 {subtitle}
               </p>
-              {/* <div className="flex flex-wrap justify-center gap-4 mb-10 max-w-4xl mx-auto">
-                {points.map((point, i) => (
-                  <span
-                    key={i}
-                    className="bg-white/20 text-white px-5 py-2 rounded-full border border-white/40 text-lg font-medium backdrop-blur-md"
-                  >
-                    {point}
-                  </span>
-                ))}
-              </div> */}
               <div className="flex flex-wrap justify-center gap-4 mb-10 max-w-4xl mx-auto">
                 {points.map((point, i) => (
                   <span
@@ -143,15 +87,6 @@ const handleClick = () => {
                   </span>
                 ))}
               </div>
-              
-              {/* {cta && (
-                <a
-                  href={ctaUrl}
-                  className="inline-block px-8 py-3 text-lg font-medium rounded-full bg-gradient-to-r from-sky-500 to-indigo-600 text-white shadow-lg hover:scale-105 transform transition-transform duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-400"
-                >
-                  {cta}
-                </a>
-              )} */}
 
               {cta && (
                 <AnimatedArrowButton onClick={() => navigate(ctaUrl)}>
@@ -168,10 +103,10 @@ const handleClick = () => {
 
       {/* Progress Lines */}
       <div className="absolute top-1/2 left-4 -translate-y-1/2 md:-translate-y-2/2 flex flex-col gap-4 z-30">
-        {SLIDES.map((_, i) => (
+        {heroData.map((_, i) => (
           <button
             key={i}
-            className={`w-1 h-8 rounded-full bg-white transition-all cursor-pointer
+            className={`w-1 h-10 rounded-full bg-white transition-all cursor-pointer
               ${i === active ? "bg-white scale-y-125" : "bg-white/30 scale-y-100"}
             `}
             onClick={() => goToSlide(i)}
@@ -229,8 +164,8 @@ const handleClick = () => {
 
 // import React, { useEffect, useState, useRef } from "react";
 
-// // Array of slides: image, title, subtitle, points, cta, etc.
-// const SLIDES = [
+// // Array of heroData: image, title, subtitle, points, cta, etc.
+// const heroData = [
 //   {
 //     img: "bg-img/bg1.jpg", // Place your images in /public/bg-img/
 //     title: "Empower Your Ideas With AI",
@@ -285,7 +220,7 @@ const handleClick = () => {
 //   useEffect(() => {
 //     timeoutRef.current && clearTimeout(timeoutRef.current);
 //     timeoutRef.current = setTimeout(
-//       () => setActive((old) => (old + 1) % SLIDES.length),
+//       () => setActive((old) => (old + 1) % heroData.length),
 //       SLIDE_DURATION
 //     );
 //     return () => clearTimeout(timeoutRef.current);
@@ -299,8 +234,8 @@ const handleClick = () => {
 
 //   return (
 //     <section className="relative w-full h-screen overflow-hidden select-none">
-//       {/* Slides */}
-//       {SLIDES.map((slide, idx) => {
+//       {/* heroData */}
+//       {heroData.map((slide, idx) => {
 //         // Determine slide animation classes
 //         let translate = "translate-x-[100vw]";
 //         let scale = "scale-110";
@@ -315,7 +250,7 @@ const handleClick = () => {
 //           zIndex = "z-20";
 //           pointerEvents = "pointer-events-auto";
 //         } else if (idx === prev && prev !== active) {
-//           // Previous slide slides out:
+//           // Previous slide heroData out:
 //           // Slide direction depends on whether next slide is after or before current
 //           const slideDirection = prev < active ? "-translate-x-[100vw]" : "translate-x-[100vw]";
 //           translate = slideDirection;
@@ -411,7 +346,7 @@ const handleClick = () => {
 
 //       {/* Progress Dots */}
 //       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-4 z-30">
-//         {SLIDES.map((_, i) => (
+//         {heroData.map((_, i) => (
 //           <button
 //             key={i}
 //             className={`w-3 h-3 rounded-full border-2 border-white transition-all cursor-pointer
@@ -447,7 +382,7 @@ const handleClick = () => {
 // import React, { useEffect, useRef, useState } from "react";
 
 // // DATA per slide!
-// const SLIDES = [
+// const heroData = [
 //     {
 //         video: "/bg-video/bg.mp4",
 //         quote: "Empowering Futures with AI & ML",
@@ -491,7 +426,7 @@ const handleClick = () => {
 
 
 //     // Prepare next index for cross-fade
-//     const nextIdx = (current + 1) % SLIDES.length;
+//     const nextIdx = (current + 1) % heroData.length;
 
 //     // Timers and progress
 //     // useEffect(() => {
@@ -566,7 +501,7 @@ const handleClick = () => {
 //     function crossFade() {
 //         setFade(false); // fade out
 //         setTimeout(() => {
-//             setCurrent((c) => (c + 1) % SLIDES.length);
+//             setCurrent((c) => (c + 1) % heroData.length);
 //             setFade(true); // fade in
 //         }, 700); // match fade duration
 //     }
@@ -574,7 +509,7 @@ const handleClick = () => {
 //     function startFadeOut() {
 //         setFade(false); // fade out
 //         setTimeout(() => {
-//             setCurrent((c) => (c + 1) % SLIDES.length);
+//             setCurrent((c) => (c + 1) % heroData.length);
 //             setFade(true); // fade in after src changed
 //         }, 600); // match fade duration
 //     }
@@ -596,7 +531,7 @@ const handleClick = () => {
 //                 // <video
 //                 //     key={i}
 //                 //     ref={ref}
-//                 //     src={SLIDES[idx].video}
+//                 //     src={heroData[idx].video}
 //                 //     className={
 //                 //         "absolute top-0 left-0 w-full h-full object-cover pointer-events-none select-none transition-opacity duration-700" +
 //                 //         (visible ? " opacity-100 z-0" : " opacity-0 z-0")
@@ -614,7 +549,7 @@ const handleClick = () => {
 //                 // />
 //                 <video
 //                     ref={videoRef}
-//                     src={SLIDES[current].video}
+//                     src={heroData[current].video}
 //                     className={
 //                         "absolute top-0 left-0 w-full h-full object-cover pointer-events-none select-none transition-opacity duration-700"
 //                     }
@@ -641,14 +576,14 @@ const handleClick = () => {
 //             <div className="relative z-20 text-center flex flex-col items-center justify-center w-full h-full px-4">
 //                 <div className="mb-8">
 //                     <h1 className="text-white text-4xl md:text-6xl font-extrabold drop-shadow-lg transition-all duration-500 fade-in">
-//                         {SLIDES[current].quote}
+//                         {heroData[current].quote}
 //                     </h1>
 //                 </div>
 //                 <p className="text-gray-300 text-xl md:text-2xl mb-6 italic fade-in">
-//                     {SLIDES[current].subtitle}
+//                     {heroData[current].subtitle}
 //                 </p>
 //                 <div className="flex flex-wrap gap-4 justify-center mt-4 fade-in">
-//                     {SLIDES[current].highlights.map((item, i) => (
+//                     {heroData[current].highlights.map((item, i) => (
 //                         <span
 //                             key={i}
 //                             className="bg-white/10 text-white px-6 py-2 rounded-2xl border border-white/30 text-lg font-medium backdrop-blur"

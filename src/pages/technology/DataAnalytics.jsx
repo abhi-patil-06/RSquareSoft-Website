@@ -14,119 +14,8 @@ import TimelineIcon from "@mui/icons-material/Timeline";
 import QueryStatsIcon from "@mui/icons-material/QueryStats";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import { useNavigate } from "react-router-dom";
-
-// DATA OBJECT FOR SECTION CONTENT
-const dataAnalyticsArticle = {
-  title: "Data Analytics",
-  sections: [
-    {
-      heading: "What is Data Analytics?",
-      content: (
-        <>
-          <span>
-            <Link href="https://en.wikipedia.org/wiki/Data_analysis" target="_blank" underline="hover" rel="noopener noreferrer">
-              Data analytics
-            </Link>{" "}
-            is the process of examining raw data to uncover trends, patterns, correlations, and actionable insights for better decision-making. It encompasses technologies and methods for collecting, cleaning, transforming, visualizing, and interpreting <Link href="https://en.wikipedia.org/wiki/Big_data" target="_blank" underline="hover" rel="noopener noreferrer">big data</Link> from distributed sources. Modern data analytics is foundational to digital transformation, enabling predictive analytics, real-time dashboards, and self-service business intelligence.
-          </span>
-        </>
-      )
-    },
-    {
-      heading: "Why is Data Analytics Important?",
-      content: (
-        <>
-          <span>
-            According to <Link href="https://www.gartner.com/en/information-technology/glossary/data-analytics" target="_blank" underline="hover" rel="noopener noreferrer">Gartner</Link> and <Link href="https://hbr.org/2022/02/your-data-strategy-is-your-business-strategy" target="_blank" underline="hover" rel="noopener noreferrer">Harvard Business Review</Link>, companies leveraging data analytics outperform their competition in revenue, operational efficiency, and innovation. Key benefits include:
-            <ul className="list-disc pl-6 mt-2 mb-2">
-              <li>Informed decision-making and reduced bias using real-time and historical data</li>
-              <li>Personalized customer experiences and targeted marketing</li>
-              <li>Detection of fraud, anomalies, and security threats faster</li>
-              <li>Optimization of supply chain, inventory, and business processes</li>
-              <li>Empowering all users—not just data scientists—via self-service analytics</li>
-            </ul>
-          </span>
-        </>
-      )
-    },
-    {
-      heading: "How Does Data Analytics Work?",
-      content: (
-        <>
-          <span>
-            Data analytics workflows encompass several core steps:<br />
-            <ul className="list-disc pl-6 mt-2 mb-2">
-              <li>
-                <strong>Data collection & ingestion:</strong> Gathering data from databases, IoT sensors, cloud platforms, and APIs.
-              </li>
-              <li>
-                <strong>Data cleaning & transformation:</strong> Standardizing, deduplicating, and converting data for consistency and accuracy (<Link href="https://en.wikipedia.org/wiki/Extract,_transform,_load" target="_blank" underline="hover" rel="noopener noreferrer">ETL</Link> or <Link href="https://en.wikipedia.org/wiki/ELT_(extract,_load,_transform)" target="_blank" underline="hover" rel="noopener noreferrer">ELT</Link> processes).
-              </li>
-              <li>
-                <strong>Analysis & modeling:</strong> Applying <Link href="https://en.wikipedia.org/wiki/Statistical_model" target="_blank" underline="hover" rel="noopener noreferrer">statistical models</Link>, <Link href="https://en.wikipedia.org/wiki/Predictive_analytics" target="_blank" underline="hover" rel="noopener noreferrer">predictive analytics</Link>, or visualization tools to draw actionable conclusions.
-              </li>
-              <li>
-                <strong>Dashboards & reporting:</strong> Using data visualization to provide business users and executives with interactive dashboards and reports.
-              </li>
-              <li>
-                <strong>Governance & security:</strong> Ensuring data quality, privacy, and compliance (such as <Link href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation" target="_blank" underline="hover" rel="noopener noreferrer">GDPR</Link>).
-              </li>
-            </ul>
-          </span>
-        </>
-      )
-    },
-    {
-      heading: "Key Features & Capabilities",
-      content: [
-        <>Ingestion of structured and unstructured data from multiple sources</>,
-        <>Scalable, real-time ETL/ELT pipelines and data lakes</>,
-        <>Interactive dashboards and self-service business intelligence (BI)</>,
-        <>Advanced data visualization, exploration, and reporting</>,
-        <>Predictive and prescriptive analytics powered by ML/AI</>,
-        <>Enterprise data governance, quality, and security</>
-      ]
-    },
-    {
-      heading: "Real-World Usage & Examples",
-      content: (
-        <>
-          <span>
-            Data analytics is revolutionizing industries around the globe:
-            <ul className="list-disc pl-6 mt-2 mb-2">
-              <li>
-                <strong>Finance:</strong> <Link href="https://en.wikipedia.org/wiki/Fraud_detection" target="_blank" underline="hover" rel="noopener noreferrer">Fraud detection</Link>, credit scoring, and risk analytics for major banks.
-              </li>
-              <li>
-                <strong>Retail:</strong> Inventory optimization and customer behavior analytics for demand forecasting (<Link href="https://en.wikipedia.org/wiki/Walmart" target="_blank" underline="hover" rel="noopener noreferrer">Walmart</Link>, <Link href="https://en.wikipedia.org/wiki/Amazon_(company)" target="_blank" underline="hover" rel="noopener noreferrer">Amazon</Link>).
-              </li>
-              <li>
-                <strong>Healthcare:</strong> Patient outcome analysis and population health research.
-              </li>
-              <li>
-                <strong>Transportation & Logistics:</strong> Real-time route optimization and predictive maintenance for fleets and airlines.
-              </li>
-              <li>
-                <strong>Public Sector:</strong> Data-driven policies and smart city initiatives using open data platforms.
-              </li>
-            </ul>
-          </span>
-        </>
-      )
-    },
-    {
-      heading: "Typical Usage Scenarios",
-      content: [
-        <>KPI dashboards with interactive visualization for executives</>,
-        <>Real-time anomaly detection and fraud prevention in financial systems</>,
-        <>Customer segmentation for targeted marketing campaigns</>,
-        <>Supply chain and inventory analysis for cost control</>,
-        <>Clinical analytics and population health management</>,
-        <>Automated compliance and data quality monitoring</>
-      ]
-    }
-  ]
-};
+import { dataAnalyticsArticle } from "../../data/TechnologyData";
+import analyticsImg from '../../assets/data-analytics.png'
 
 export default function DataAnalytics() {
   const navigate = useNavigate();
@@ -135,7 +24,22 @@ export default function DataAnalytics() {
 
       {/* Hero Section */}
       <section className="py-22 md:py-20  md:pt-35 bg-gradient-to-r from-blue-100 via-blue-50 to-white px-8 text-center w-full mx-auto">
-        <h1 className="text-primary tracking-tight font-bold drop-shadow-lg" style={{ fontSize: 'var(--font-size-title)' }}>
+        
+        {/* Breadcrumb Navigation - fixed top left corner within the div */}
+        <nav className="absolute top-26 md:top-25 md:left-23 text-text-primary text-xl uppercase ">
+          {/* First line: breadcrumb links separated by slash */}
+          <div className="flex space-x-3">
+            <a>
+              What We Do
+            </a>
+            <span>/</span>
+            <span>technology</span>
+          </div>
+          {/* Second line: horizontal dividing line */}
+          <div className="md:mt-5 h-[2px] w-[300px] md:w-4xl rounded-sm bg-gradient-to-r from-gray-500 via-gray-300 to-transparent"></div>
+        </nav>
+
+        <h1 className="text-primary pt-15 tracking-tight font-bold drop-shadow-lg" style={{ fontSize: 'var(--font-size-title)' }}>
           Data Analytics & Business Intelligence
         </h1>
         <p className="mt-4 text-text-primary italic" style={{ fontSize: 'var(--font-size-description)' }}>
@@ -143,7 +47,7 @@ export default function DataAnalytics() {
         </p>
         <Box
           component="img"
-          src="public/data-analytics.png"
+          src={analyticsImg}
           alt="Data Analytics"
           className="mx-auto mb-4 mt-5 md:mt-10 max-h-72"
         />

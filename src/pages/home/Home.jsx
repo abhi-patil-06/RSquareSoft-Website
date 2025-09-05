@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import HeroSection from "./HeroSection";
-import AboutSection from "../about/AboutUsSection";
+import AboutSection from "./AboutUsSection";
 import LifeAtCompany from "./LifeAtCompany";
 import TechnologySection from "./TechnologySection";
 import ValuePropositionSection from "./ValuePrepositionSection";
@@ -16,51 +16,9 @@ const sections = [
   { id: "solutionsSection", label: "Services" },
   { id: "lifeAtCompanySection", label: "Life at Company" },
   { id: "valuePrepositionSection", label: "Why Us" },
-  // Add more if needed
 ];
 
-// function SubNavbar({ activeSection, onNavClick, isSticky }) {
-//   return (
-//     <nav
-//       className={
-//         `w-full z-55 ` +
-//         (isSticky ? "fixed left-0" : "relative") 
-//       }
-//       style={{
-//         top: isSticky ? `${NAVBAR_HEIGHT}px` : "0px",
-//         boxShadow: isSticky ? "0 2px 4px 0 rgba(29,78,216,0.08)" : "none",
-//       }}
-//     >
-//       <div
-//         className="w-full h-[50px] flex items-start justify-start md:justify-start bg-background backdrop-blur-md px-4 md:px-10 overflow-x-auto"
-//         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-//       >
-//         <div className="flex flex-nowrap md:flex-wrap space-x-3 md:space-x-1">
-//           {sections.map((section) => (
-//             <div key={section.id} className="relative flex flex-col items-center shrink-0 md:shrink-auto mb-0 md:mb-0">
-//               <button
-//                 onClick={() => onNavClick(section.id)}
-//                 className={
-//                   "px-4 md:px-5 py-2 md:py-3  transition-all duration-200 shadow-sm cursor-pointer whitespace-nowrap text-sm md:text-base " +
-//                   (activeSection === section.id
-//                     ? "bg-primary text-button-text scale-105 shadow-xl"
-//                     : "text-primary hover:bg-blue-100/70 bg-transparent")
-//                 }
-//                 style={{
-//                   boxShadow: activeSection === section.id ? "0 2px 20px 0 #2563eb44" : "none",
-//                   fontSize: "var(--font-size-subheading)",
-//                 }}
-//               >
-//                 {section.label}
-//               </button>
-//             </div>
-//           ))}
-//         </div>
-//       </div>
-//     </nav>
 
-//   );
-// }
 function SubNavbar({ activeSection, onNavClick, isSticky }) {
   const scrollContainerRef = useRef(null);
   const buttonsRef = useRef({}); // to store refs of buttons by section id
@@ -202,12 +160,9 @@ export default function Home() {
           <HeroSection />
         </div>
 
-        {/* <div>
-            <Loader />
-        </div> */}
 
         {/* SubNavbar */}
-        <div id="subNavbar" className="relative hidden md:flex z-40">
+        <div id="subNavbar" className="relative hidden lg:flex z-40">
           <SubNavbar
             activeSection={activeSection}
             onNavClick={handleNavClick}

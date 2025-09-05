@@ -2,7 +2,7 @@ import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 import PressReleasesSection from "./PressReleasesSection";
 import MultimediaAssetsSection from "./MultimediaAssetsSection";
-import EventsSection from "./EventsSection";
+import newsBg from '../../assets/img1.png'
 
 const newsroomData = {
     pressReleases: [
@@ -253,9 +253,8 @@ export default function Newsroom() {
                     sx={{
                         bgcolor: "var(--color-background)",
                         width: "100%",
-                        pt: { xs: 10, md: 12 },
-                        // pb: { xs: 3, md: 5 },
-                        px: { xs: 0, md: 8 },
+                        pt: { xs: 13, md: 14 },
+                        px: { xs: 2, md: 8 },
                     }}
                 >
                     <Box
@@ -266,7 +265,7 @@ export default function Newsroom() {
                             display: "flex",
                             alignItems: "end",
                             justifyContent: "center",
-                            backgroundImage: `url("/public/award-bg.png")`,
+                            backgroundImage: `url(${newsBg})`,
                             backgroundAttachment: "fixed",
                             backgroundSize: "cover",
                             backgroundPosition: "center",
@@ -279,7 +278,7 @@ export default function Newsroom() {
                             sx={{
                                 position: "absolute",
                                 inset: 0,
-                                bgcolor: "rgba(0,0,0,0.6)", // semi-transparent white
+                                bgcolor: "rgba(0,0,0,0.6)",
                                 zIndex: 1,
                             }}
                         />
@@ -288,13 +287,25 @@ export default function Newsroom() {
                             sx={{
                                 position: "relative",
                                 zIndex: 2,
-                                // left: -100,
-                                width: { xs: "90%", md: "60%" },
+                                width: { xs: "90%", md: "80%" },
                                 textAlign: { xs: "center", md: "left" },
-                                mx: "auto",
-                                py: { xs: 5, md: 8 },
+                                // mx: "auto",
+                                py: { xs: 5, md: 20 },
                             }}
                         >
+                            {/* Breadcrumb Navigation - fixed top left corner within the div */}
+                            <nav className="absolute -top-15 md:top-15 text-white font-bold text-lg md:text-2xl uppercase">
+                                {/* First line: breadcrumb links separated by slash */}
+                                <div className="flex space-x-3">
+                                    <a>
+                                        Who we are
+                                    </a>
+                                    <span>/</span>
+                                    <span>Newsroom</span>
+                                </div>
+                                {/* Second line: horizontal dividing line */}
+                                <div className="md:mt-5 h-[2px] w-[300px] md:w-4xl rounded-sm bg-gradient-to-r from-background via-gray-300 to-transparent"></div>
+                            </nav>
                             <Typography
                                 variant="h3"
                                 fontWeight="bold"
@@ -325,11 +336,12 @@ export default function Newsroom() {
                                     }
                                 }}
 
-                                sx={{ boxShadow: 2, borderRadius: "18px", px: 5, py: 1.5, fontSize: 'var(--font-size-description)' }}
+                                sx={{ boxShadow: 2, borderRadius: "18px", px: 5, py: 1.5, fontSize: "var(--font-size-description)" }}
                             >
-                                Explore More
+                                Explore Our Newsroom
                             </Button>
                         </Box>
+
                     </Box>
                 </Box>
 
@@ -370,12 +382,6 @@ export default function Newsroom() {
 
                 <section className="bg-background">
                     <MultimediaAssetsSection />
-                </section>
-
-
-                {/* 7. Upcoming Events */}
-                <section className="bg-background">
-                    <EventsSection />
                 </section>
 
 

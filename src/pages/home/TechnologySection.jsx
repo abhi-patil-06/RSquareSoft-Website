@@ -1,66 +1,9 @@
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import {
-  FaCloud,
-  FaChartLine,
-  FaBuilding,
-  FaRobot,
-  FaCogs,
-} from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
 
-const services = [
-  {
-    title: "Enterprise Products",
-    description:
-      "Enterprise Production refers to the holistic process of architecting, orchestrating, and managing large-scale, mission-critical systems for complex organizations. Unlike standard production operations, it leverages advanced automation, modular architectures, and seamless integration with business-wide platforms (such as ERP, supply chain, and customer management).",
-    icon: <FaBuilding className="text-white w-20 h-20" />,
-    color: "#3B82F6",
-    link: "/enterpriseProduct",
-    blob:
-      "M40.5,-67.7C52.3,-58.7,61.2,-46.5,66.3,-33.2C71.4,-19.8,72.7,-5.3,69.4,7.6C66.2,20.6,58.4,31.9,48.1,40.2C37.8,48.6,24.9,54,11.3,60.7C-2.3,67.3,-16.7,75.2,-28.3,72.2C-39.8,69.1,-48.4,55.1,-54.7,42.1C-61,29,-64.9,17,-66.7,3.6C-68.5,-9.8,-68.2,-24.6,-61.6,-37.1C-55,-49.7,-42.2,-59.9,-28.2,-67.4C-14.2,-75,1.9,-79.8,16.6,-76.3C31.3,-72.8,54.4,-61.8,40.5,-67.7Z",
-  },
-  {
-    title: "Cloud Expertise",
-    description:
-      "Cloud expertise represents organization-wide proficiency in designing, deploying, maintaining, and optimizing applications and infrastructure on cloud platforms such as AWS, Azure, and Google Cloud (GCP). Cloud experts leverage the flexibility, scalability, and global reach of cloud infrastructure to drive innovation while maintaining cost efficiency, resilience, and security.",
-    icon: <FaCloud className="text-white w-20 h-20" />,
-    color: "#EF4444",
-    link: "/cloudExpertise",
-    blob:
-      "M59.4,-69.5C73.8,-53.5,80.7,-26.8,77.5,-3.1C74.3,20.6,61,41.2,46.6,56.2C32.2,71.3,16.1,80.7,-2.3,82.2C-20.6,83.6,-41.2,77.1,-56.5,63.3C-71.8,49.4,-81.8,28.2,-81.6,8.6C-81.4,-11.1,-70.9,-29.1,-58,-46.7C-45.1,-64.3,-29.9,-81.4,-10.8,-83.7C8.3,-86,16.6,-73.7,59.4,-69.5Z",
-  },
-  {
-    title: "Artificial Intelligence",
-    description:
-      "Artificial Intelligence (AI) is the branch of computer science focused on building systems that can perform tasks typically requiring human intelligence. Modern AI is powered by advances in machine learning (ML), NLP,computer vision, and robust computing infrastructure, enabling computers to analyze large volumes of data, recognize patterns, and make intelligent predictions or automate complex tasks.",
-    icon: <FaRobot className="text-white w-20 h-20" />,
-    color: "#22C55E",
-    link: "/ai",
-    blob:
-      "M39.6,-61.3C54.1,-53.5,70.3,-45.3,76.2,-32.1C82.1,-18.9,77.6,-0.6,69.6,12.8C61.6,26.1,50,34.5,39.8,45.5C29.6,56.6,20.9,70.2,7.6,75.4C-5.6,80.6,-22.6,77.5,-37.5,70.4C-52.4,63.3,-65.2,52.3,-71.3,38.5C-77.5,24.7,-76.9,8.2,-75.8,-9.6C-74.8,-27.4,-73.2,-46.4,-61.3,-56.3C-49.3,-66.1,-27.1,-66.7,-8.3,-59.6C10.4,-52.6,20.8,-37.8,39.6,-61.3Z",
-  },
-  {
-    title: "Data Analytics",
-    description:
-      "Data analytics is the process of examining raw data to uncover trends, patterns, correlations, and actionable insights for better decision-making. It encompasses technologies for collecting, cleaning, transforming, visualizing big data from distributed sources. Modern data analytics is foundational to digital transformation, enabling predictive analytics, real-time dashboards, and self-service business intelligence.",
-    icon: <FaChartLine className="text-white w-20 h-20" />,
-    color: "#A855F7",
-    link: "/dataAnalytics",
-    blob:
-      "M60.1,-56.9C74.4,-41.6,80.6,-20.8,77.4,-2.3C74.2,16.1,61.6,32.2,47.3,47.5C32.9,62.9,16.5,77.6,-0.3,77.9C-17.1,78.2,-34.3,64.2,-47.3,48.8C-60.4,33.3,-69.4,16.6,-67.3,1.3C-65.2,-14,-52.1,-28,-40.1,-43.4C-28.1,-58.8,-14.1,-75.5,2.6,-78.4C19.3,-81.3,38.6,-70.5,60.1,-56.9Z",
-  },
-  {
-    title: "Machine Learning",
-    description:
-      "Machine Learning (ML) is a subset of artificial intelligence focused on building algorithms and models that enable computers to learn from data and make predictions or decisions without being explicitly programmed for each specific task. Modern machine learning is used for applications including recommendation engines, fraud detection, speech recognition, predictive maintenance, and image classification.",
-    icon: <FaCogs className="text-white w-20 h-20" />,
-    color: "#3B82F6",
-    link: "/ml",
-    blob:
-      "M40.5,-67.7C52.3,-58.7,61.2,-46.5,66.3,-33.2C71.4,-19.8,72.7,-5.3,69.4,7.6C66.2,20.6,58.4,31.9,48.1,40.2C37.8,48.6,24.9,54,11.3,60.7C-2.3,67.3,-16.7,75.2,-28.3,72.2C-39.8,69.1,-48.4,55.1,-54.7,42.1C-61,29,-64.9,17,-66.7,3.6C-68.5,-9.8,-68.2,-24.6,-61.6,-37.1C-55,-49.7,-42.2,-59.9,-28.2,-67.4C-14.2,-75,1.9,-79.8,16.6,-76.3C31.3,-72.8,54.4,-61.8,40.5,-67.7Z",
-  },
-];
+import { useNavigate } from "react-router-dom";
+import { technologyData } from "../../data/HomeData";
+
 
 const adjustColorLightness = (hex, factor) => {
   let r = parseInt(hex.slice(1, 3), 16);
@@ -249,17 +192,8 @@ export default function TechnologySection() {
         <p className="font-semibold md:ml-15 text-center md:text-start uppercase tracking-wider md:mb-10 text-primary" style={{ fontSize: 'var(--font-size-subheading)' }}>
           — Technology
         </p>
-        {/* <div className="text-center mb-4 max-w-screen-xl mx-auto px-4">
-          <h2
-            className="font-bold text-text-primary"
-            style={{ fontSize: "var(--font-size-heading1)" }}
-          >
-            Technology
-          </h2>
-          <div className="w-32 h-1 bg-primary mx-auto mt-2 rounded"></div>
-        </div> */}
         <div className="md:space-y-10">
-          {services.map((service, index) => {
+          {technologyData.map((service, index) => {
             const isEven = index % 2 === 0;
             const lightFillColor = adjustColorLightness(service.color, 1.3);
             const strokeColor = adjustColorLightness(service.color, 0.7);
@@ -288,26 +222,7 @@ export default function TechnologySection() {
                   <p className="text-text-primary text-center md:text-start px-3 md:px-0 leading-relaxed" style={{ fontSize: 'var(--font-size-subheading)' }}>
                     {service.description}
                   </p>
-                  {/* <a
-                    href={service.link}
-                    className="mt-6 inline-block font-semibold py-2 px-6 rounded-full transition-all duration-300 transform hover:scale-105"
-                    style={{
-                      borderColor: "#2962ff",
-                      color: "#2962ff",
-                      borderWidth: "2px",
-                      backgroundColor: "transparent",
-                    }}
-                    onMouseEnter={e => {
-                      e.currentTarget.style.backgroundColor = "#2962ff";
-                      e.currentTarget.style.color = "white";
-                    }}
-                    onMouseLeave={e => {
-                      e.currentTarget.style.backgroundColor = "transparent";
-                      e.currentTarget.style.color = "#2962ff";
-                    }}
-                  >
-                    Learn More
-                  </a> */}
+
                   <button className="relative text-primary  font-semibold group px-0 py-0 mt-5 bg-transparent border-none shadow-none transition cursor-pointer block mx-auto md:mx-0"
                     onClick={() => navigate(service.link)}>
                     Read More
@@ -351,7 +266,7 @@ export default function TechnologySection() {
 //   FaCogs,
 // } from "react-icons/fa";
 
-// const services = [
+// const technologyData = [
 //   {
 //     title: "Enterprise Products",
 //     description:
@@ -579,7 +494,7 @@ export default function TechnologySection() {
 //   );
 // };
 
-// export default function ServicesSection() {
+// export default function technologyDataSection() {
 //   return (
 //     <section className="bg-white py-20 px-6 md:px-8">
 //       <div className="max-w-9xl mx-auto">
@@ -587,7 +502,7 @@ export default function TechnologySection() {
 //           — Technology
 //         </p>
 //         <div className="space-y-28">
-//           {services.map((service, index) => {
+//           {technologyData.map((service, index) => {
 //             const isEven = index % 2 === 0;
 //             const lightFillColor = adjustColorLightness(service.color, 1.3);
 //             const strokeColor = adjustColorLightness(service.color, 0.7);
@@ -618,7 +533,7 @@ export default function TechnologySection() {
 //                     {service.description}
 //                   </p>
 //                   <a
-//                     href={`/services/${service.title
+//                     href={`/technologyData/${service.title
 //                       .toLowerCase()
 //                       .replace(/\s+/g, "-")}`}
 //                     className="mt-6 inline-block font-semibold py-2 px-6 rounded-full transition-all duration-300 transform hover:scale-105"
@@ -682,7 +597,7 @@ export default function TechnologySection() {
 //   FaCogs,
 // } from "react-icons/fa";
 
-// const services = [
+// const technologyData = [
 //   {
 //     title: "Enterprise Products",
 //     description: "We develop and integrate robust, scalable software solutions and platforms tailored to meet the complex needs of large enterprises.",
@@ -733,7 +648,7 @@ export default function TechnologySection() {
 //   return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase()}`;
 // };
 
-// export default function ServicesSection() {
+// export default function technologyDataSection() {
 //   return (
 //     <section className="bg-white py-20 px-6 md:px-8">
 //       <div className="max-w-9xl mx-auto">
@@ -743,7 +658,7 @@ export default function TechnologySection() {
 //         </p>
 
 //         <div className="space-y-28">
-//           {services.map((service, index) => {
+//           {technologyData.map((service, index) => {
 //             const isEven = index % 2 === 0;
 
 //             // Generate slightly lighter and darker colors for background blobs and lines
@@ -896,7 +811,7 @@ export default function TechnologySection() {
 //                   </p>
 //                   {/* Learn More Button */}
 //                   <a
-//                     href={`/services/${service.title.toLowerCase().replace(/\s+/g, '-')}`} // Example: generates /services/cloud-integration
+//                     href={`/technologyData/${service.title.toLowerCase().replace(/\s+/g, '-')}`} // Example: generates /technologyData/cloud-integration
 //                     className="mt-6 inline-block font-semibold py-2 px-6 rounded-full transition-all duration-300 transform hover:scale-105"
 //                     style={{
 //                       borderColor: '#2962ff', // Assuming karmikaPrimaryBlue is in scope

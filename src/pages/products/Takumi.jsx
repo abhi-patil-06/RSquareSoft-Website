@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
+import logoTakumi from '../../assets/Takumi-home.png'
+import takumiBg from '../../assets/takumi-bg3.png'
 
 // Typing Effect Hook
 const useTypingEffect = (
@@ -56,13 +58,27 @@ const Takumi = () => {
         <section className="min-h-screen flex items-center justify-center bg-white px-6">
             <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
+                {/* Breadcrumb Navigation - fixed top left corner within the div */}
+                <nav className="absolute top-25 md:top-25 text-text-primary font-bold text-lg md:text-2xl uppercase">
+                    {/* First line: breadcrumb links separated by slash */}
+                    <div className="flex space-x-3">
+                        <a>
+                            What We Do
+                        </a>
+                        <span>/</span>
+                        <span>Products</span>
+                    </div>
+                    {/* Second line: horizontal dividing line */}
+                    <div className="md:mt-5 h-[2px] w-[300px] md:w-4xl rounded-sm bg-gradient-to-r from-gray-500 via-gray-300 to-transparent"></div>
+                </nav>
+
                 {/* Left Side */}
                 <div
-                    className="flex flex-col items-center text-center select-none space-y-8 max-w-xl mx-auto"
+                    className="flex flex-col pt-30 items-center text-center select-none space-y-8 max-w-xl mx-auto"
                     style={{ animation: "fadeSlideIn 1s ease forwards" }}
                 >
-                    <div className="flex items-center justify-center  h-fit mb-4">
-                        <img src="public/logo/Takumi-home.png" alt="TakuMi" />
+                    <div className="flex justify-start mb-4 w-full ">
+                        <img src={logoTakumi} alt="ValetPlus" className="w-100" />
                     </div>
 
                     {/* <h1 className="text-5xl font-extrabold text-gray-900 leading-tight">
@@ -77,7 +93,7 @@ const Takumi = () => {
                         Our Trade Surveillance helps financial institutions monitor and detect suspicious activities, reduce risks, and stay compliant with regulatory requirements.
                     </p>
 
-                    <button className="relative w-50 h-14 px-2 py-3 font-semibold border border-blue-950 text-blue-950 hover:bg-primary hover:text-white transition-all duration-300 cursor-pointer rounded-4xl text-xl hover:border-0">
+                    <button onClick={() => window.open("https://takumi-platform.com", "_blank")} className="relative w-50 h-14 px-2 py-3 font-semibold border border-blue-950 text-blue-950 hover:bg-primary hover:text-white transition-all duration-300 cursor-pointer rounded-4xl text-xl hover:border-0">
                         Discover TakuMi
                     </button>
                 </div>
@@ -89,7 +105,7 @@ const Takumi = () => {
                     style={{ animation: "fadeSlideIn 1s ease forwards", animationDelay: "0.5s" }}
                 >
                     <img
-                        src="/product-bg/takumi-bg3.png"
+                        src={takumiBg}
                         alt="Hero"
                         className="max-w-full h-auto md:mr-10"
                     />

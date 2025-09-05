@@ -2,7 +2,7 @@ import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 // Import or copy your blogData from Blog list or manage via global/store/API
-import { blogData } from "./BlogData";
+import { blogData } from "../../data/BlogData";
 import { div } from "framer-motion/client";
 
 export default function BlogDetail() {

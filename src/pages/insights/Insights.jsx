@@ -1,84 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
-import { InsertDriveFile, Lightbulb, Create } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import { Box, Typography, Button, Card, CardContent, Avatar, Grid, Chip, Stack, TextField, MenuItem, } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import Blog from "./Blog";
-
-
-const mockArticles = [
-  {
-    id: 1,
-    title: "The Global Trade Surveillance Landscape – Why It Matters More Than Ever",
-    author: "Ramesh GharmalKar",
-    date: "June 23, 2025",
-    image:
-      "public/article-1.png",
-    articleUrl: "https://www.linkedin.com/pulse/global-trade-surveillance-landscape-why-matters-more-than-gharmalkar-6qtwf/?trackingId=dsbLh7G9foLA6qq5hAu0WQ%3D%3D"
-  },
-  {
-    id: 2,
-    title: "Designing the Ideal Trade Surveillance Platform",
-    author: "Ramesh GharmalKar",
-    date: "June 30, 2025",
-    image:
-      "public/article-2.png",
-    articleUrl: "https://www.linkedin.com/pulse/designing-ideal-trade-surveillance-platform-ramesh-gharmalkar-hksic/?trackingId=2wS6LB9pFqEgo6qPdKK5Xg%3D%3D"
-  },
-  {
-    id: 3,
-    title: "The Conversation Continues",
-    author: "Ramesh GharmalKar",
-    date: "July 6, 2025",
-    image:
-      "public/article-3.png",
-    articleUrl: "https://www.linkedin.com/pulse/lets-build-safer-smarter-markets-part-3-conversation-gharmalkar-iu2sf/?trackingId=n9nkLRrXjQ02hFbONHjYLA%3D%3D"
-  },
-  {
-    id: 4,
-    title: "Behind the ₹4,800 Crore INR (575 million USD) Storm: How Smarter Surveillance Could've Changed the Game?",
-    author: "Ramesh GharmalKar",
-    date: "July 9, 2025",
-    image:
-      "public/article-4.png",
-    articleUrl: "https://www.linkedin.com/pulse/article-4-behind-4800-crore-inr-575-million-usd-storm-gharmalkar-juw4f/?trackingId=u1mEhJj4TyJtIWt8Cvio5g%3D%3D"
-  },
-  {
-    id: 5,
-    title: "Building Trust in Finance: The Dual Power of Security and Compliance",
-    author: "Rajneesh Shrimalli",
-    date: "July 15, 2025",
-    image:
-      "public/article-5.png",
-    articleUrl: "https://www.linkedin.com/posts/rajneeshshrimali_building-trust-in-finance-activity-7350003319420915712-KdaR?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAEALH4UBEXYddERQgNvaxJgLA_0w33Z9gHE"
-  },
-  {
-    id: 6,
-    title: "AI in Trade Surveillance: Hype or Game Changer?",
-    author: "Ramesh GharmalKar",
-    date: "July 22, 2025",
-    image:
-      "public/article-6.png",
-    articleUrl: "https://www.linkedin.com/pulse/ai-powered-trade-surveillance-hype-game-changer-ramesh-gharmalkar-oexof/?trackingId=TAjNb1wzFfRjFGRkBzv%2FYA%3D%3D"
-  },
-  {
-    id: 7,
-    title: "Sir, we would have got the alerts, …everything was okay… but…",
-    author: "Ramesh GharmalKar",
-    date: "August 5, 2025",
-    image:
-      "public/article-7.png",
-    articleUrl: "https://www.linkedin.com/pulse/sir-we-would-have-got-alerts-everything-okay-ramesh-gharmalkar-oiszf/?trackingId=dXqgZhz%2BrTcJaWmLGVrgQg%3D%3D"
-  },
-  {
-    id: 8,
-    title: "When Mergers Make Markets Move — and Traders Slip",
-    author: "Ramesh GharmalKar",
-    date: "August 18, 2025",
-    image:
-      "public/article-8.png",
-    articleUrl: "https://www.linkedin.com/pulse/introducing-our-new-series-stories-compliance-gone-wrong-tick-j3o7f/?trackingId=ERXJjCXBcVFLBMoAcb8Rvw%3D%3D"
-  },
-];
+import { mockArticles } from "../../data/InsightsData";
+import insightsImg from "../../assets/insights.png"
+import Articles from "./Articles";
 
 export default function Insights() {
   const carouselRef = useRef(null);
@@ -86,6 +12,9 @@ export default function Insights() {
   const gap = 16; // px, tailwind gap-4
   const navigate = useNavigate();
   const youtubeVideoId = "bQieLqcSmEI";
+
+
+
 
   // current start index for slide
   const [startIndex, setStartIndex] = useState(0);
@@ -103,6 +32,7 @@ export default function Insights() {
 
     return () => clearInterval(interval);
   }, [totalSlides]);
+
 
   // Calculate translateX based on startIndex, each slide = cardWidth + gap
   const translateX = -startIndex * (cardWidth + gap);
@@ -131,7 +61,7 @@ export default function Insights() {
           display: "flex",
           alignItems: "end",
           justifyContent: "center",
-          backgroundImage: `url("/public/insights.png")`,
+          backgroundImage: `url(${insightsImg})`,
           backgroundAttachment: "fixed",
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -139,6 +69,7 @@ export default function Insights() {
           mb: 5,
         }}
       >
+
         {/* Overlay */}
         <Box
           sx={{
@@ -149,17 +80,32 @@ export default function Insights() {
             zIndex: 1,
           }}
         />
+
+
         {/* Content */}
         <Box
           sx={{
             position: "relative",
             zIndex: 2,
-            width: { xs: "90%", md: "60%" },
+            width: { xs: "90%", md: "80%" },
             textAlign: { xs: "center", md: "left" },
-            mx: "auto",
-            py: { xs: 5, md: 8 },
+            // mx: "auto",
+            py: { xs: 5, md: 20 },
           }}
         >
+          {/* Breadcrumb Navigation - fixed top left corner within the div */}
+          <nav className="absolute -top-12 md:top-15 text-white font-bold text-lg md:text-2xl uppercase">
+            {/* First line: breadcrumb links separated by slash */}
+            <div className="flex space-x-3">
+              <a>
+                Insights
+              </a>
+              {/* <span>/</span>
+            <span className="text-gray-300">Product Development</span> */}
+            </div>
+            {/* Second line: horizontal dividing line */}
+            <div className="md:mt-5 h-[2px] w-[300px] md:w-4xl rounded-sm bg-gradient-to-r from-background via-gray-300 to-transparent"></div>
+          </nav>
           <Typography
             variant="h3"
             fontWeight="bold"
@@ -209,7 +155,7 @@ export default function Insights() {
           <div className="w-32 h-1 bg-primary mx-auto mt-2 rounded"></div>
         </div>
 
-        <div
+        {/* <div
           ref={carouselRef}
           className="relative overflow-hidden md:max-w-screen-xl md:h-[540px] bg-blue-100 md:mx-auto md:py-13 p-4 "
           style={{ userSelect: "none" }}
@@ -234,7 +180,6 @@ export default function Insights() {
                   }}
                 >
                   <div className="mb-4 flex flex-col gap-4 h-full">
-                    {/* Image container with fixed aspect ratio */}
                     <div className="rounded overflow-hidden h-[180px] bg-gray-200 shadow-sm">
                       <img
                         src={image}
@@ -268,7 +213,9 @@ export default function Insights() {
               )
             )}
           </div>
-        </div>
+        </div> */}
+
+        <Articles articles={mockArticles} />
       </section>
 
       {/* Testimonial & Video Section */}

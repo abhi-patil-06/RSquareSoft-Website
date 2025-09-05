@@ -1,14 +1,11 @@
 import React from "react";
 import {FaLinkedin,FaTwitter,FaEnvelope,FaGithub,} from "react-icons/fa";
 import { MdSupervisorAccount, MdVerifiedUser, MdTrendingUp, MdStar } from "react-icons/md";
+import ctoImg from '../../assets/rajneesh.png'
 
-// Example: Replace with actual imports or public paths
 const companyLogo = "public/logo/logo.png   ";
-const ctoPhoto = "/rajneesh.png";
-// const awardsImage = "/logo/logo.png";
-// const productsImage = "/logo/logo.png";
-const ctoAwardsImage = "/logo/logo.png";   // update with actual awards image
-const ctoProductsImage = "/logo/logo.png"; // update with actual products/platform/AI image
+const ctoAwardsImage = "/logo/logo.png";   
+const ctoProductsImage = "/logo/logo.png"; 
 
 // Social media/contact data (replace hrefs/emails with real links)
 const socialLinks = [
@@ -74,8 +71,8 @@ export default function CtoInfoSection() {
                 {/* Content Right */}
                 <div className="flex-1 relative bg-gray-200 border border-border min-h-[350px] flex items-end max-w-xl w-full mx-auto">
                     <img
-                        src={ctoPhoto}
-                        alt="Ramesh Gharmalkar"
+                        src={ctoImg}
+                        alt="Rajneesh Shrimalli"
                         className="w-full h-full object-cover"
                         loading="lazy"
                     />

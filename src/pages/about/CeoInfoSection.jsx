@@ -1,10 +1,10 @@
 import React from 'react';
 import {FaLinkedin,FaTwitter,FaEnvelope,FaGithub,} from "react-icons/fa";
 import { MdSupervisorAccount, MdVerifiedUser, MdTrendingUp, MdStar } from "react-icons/md";
+import ceo from '../../assets/ramesh.png'
 
 // Example: Replace with actual imports or public paths
 const companyLogo = "public/logo/logo.png   ";
-const ceoPhoto = "/ramesh.png";
 const awardsImage = "/logo/logo.png";
 const productsImage = "/logo/logo.png";
 
@@ -73,7 +73,7 @@ const CeoInfoSection = () => (
                 {/* Content Right */}
                 <div className="flex-1 relative bg-gray-200 border border-border min-h-[350px] flex items-end max-w-xl w-full mx-auto">
                     <img
-                        src={ceoPhoto}
+                        src={ceo}
                         alt="Ramesh Gharmalkar"
                         className="w-full h-full object-cover"
                         loading="lazy"
@@ -188,129 +188,3 @@ const CeoInfoSection = () => (
 
 
 export default CeoInfoSection;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React from "react";
-// import { FaLinkedin, FaTwitter, FaEnvelope } from "react-icons/fa";
-
-// const ceo = {
-//     name: "Ramesh Gharmalkar",
-//     title: "Chief Executive Officer",
-//     photo: "/public/ramesh.png",
-//     article: [
-//         "Ramesh Gharmalkar is renowned for his exceptional leadership, blending innovative vision with hands-on experience to inspire FutureTech Innovations' global growth. He consistently drives transformative strategies focused on digital excellence, culture, and lasting partnerships.",
-//         "Under Ramesh's leadership, FutureTech has launched award-winning AI products, expanded to new international markets, and fostered a unique culture of talent development and ethical technology.",
-//         "Aarav is a sought-after thought leader, keynote speaker at international summits, and a trusted advisor on technology policy and digital transformation. Outside work, he champions educational access and supports community tech initiatives."
-//     ],
-//     highlights: [
-//         "20+ years in global tech leadership.",
-//         "Keynote speaker at World Tech Leaders and Digital India Summit.",
-//         "Advocate for diversity, inclusion, and ethical AI.",
-//         "MIT Sloan MBA • BTech, IIT Delhi."
-//     ],
-//     contacts: [
-//         {
-//             icon: <FaLinkedin className="w-5 h-5 fill-blue-700" />,
-//             label: "LinkedIn",
-//             url: "https://linkedin.com/in/aarav-singh"
-//         },
-//         {
-//             icon: <FaTwitter className="w-5 h-5 fill-sky-600" />,
-//             label: "Twitter",
-//             url: "https://twitter.com/aaravsingh"
-//         },
-//         {
-//             icon: <FaEnvelope className="w-5 h-5 fill-gray-500" />,
-//             label: "Email",
-//             url: "mailto:aarav.singh@futuretech.com"
-//         }
-//     ]
-// };
-
-// export default function CeoInfoSection() {
-//     return (
-//         <main className="w-full min-h-screen bg-white flex flex-col">
-//             {/* Header */}
-//             <section className="w-full h-screen flex flex-col lg:flex-row">
-//                 {/* Left: Name and Designation */}
-//                 <div className="flex-1 flex flex-col justify-center px-10 py-16 ">
-//                     <h1 className="text-5xl md:text-7xl font-bold text-black mb-3">
-//                         {ceo.name}
-//                     </h1>
-//                     <h2 className="text-2xl md:text-3xl font-medium text-gray-900 mb-2">
-//                         {ceo.title}
-//                     </h2>
-//                 </div>
-//                 {/* Right: Profile Image on dark panel */}
-//                 <div className="flex-1 relative flex items-center justify-center bg-gradient-to-bl ">
-//                     <div className="absolute w-100 h-100 bg-black rounded-full blur-3xl opacity-30 "></div>{/*animate-pulse*/}
-//                     <img
-//                         src={ceo.photo}
-//                         alt={ceo.name}
-//                         className="w-80 h-80 md:w-148 md:h-148 object-cover relative z-10 "
-//                         style={{ background: "transparent" }}
-//                     />
-//                 </div>
-//             </section>
-//             <section className="max-w-7xl mx-auto px-6  mb-16">
-
-//                 {/* Article/Bio */}
-//                 {/* <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-3">About Ramesh Gharmalkar</h2> */}
-//                 <article className="text-gray-800 text-lg leading-relaxed space-y-5 mb-8">
-//                     {ceo.article.map((para, idx) => (
-//                         <p key={idx}>{para}</p>
-//                     ))}
-//                 </article>
-
-//                 {/* Highlights */}
-//                 <div className="mb-8">
-//                     <h3 className="font-semibold text-blue-800 mb-3 text-xl">Key Highlights</h3>
-//                     <ul className="list-disc pl-6 space-y-2">
-//                         {ceo.highlights.map((point, idx) => (
-//                             <li key={idx} className="text-gray-800">{point}</li>
-//                         ))}
-//                     </ul>
-//                 </div>
-
-//                 {/* Contact & Social */}
-//                 <div className="border-t border-blue-200 pt-6 flex flex-col md:flex-row items-center justify-between gap-5">
-//                     <div className="mb-4 md:mb-0">
-//                         {/* <span className="font-semibold text-gray-700 text-base mr-2">Connect with Ramesh:</span> */}
-//                     </div>
-//                     <div className="flex gap-5">
-//                         {ceo.contacts.map(contact => (
-//                             <a
-//                                 key={contact.label}
-//                                 href={contact.url}
-//                                 target="_blank"
-//                                 rel="noopener noreferrer"
-//                                 className="group flex items-center gap-1 text-blue-700 hover:text-blue-900 font-medium transition"
-//                             >
-//                                 {contact.icon}
-//                                 <span className="underline group-hover:no-underline">{contact.label}</span>
-//                             </a>
-//                         ))}
-//                     </div>
-//                 </div>
-//             </section>
-//         </main>
-//     );
-// }

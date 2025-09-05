@@ -1,100 +1,121 @@
 import React from 'react'
-import { Button, Card, CardContent, Typography } from '@mui/material'
+import { Box, Button, Card, CardContent, Typography } from '@mui/material'
 import { ArrowForward, Star, Build, Security, VerifiedUser } from '@mui/icons-material'
 import { TbTarget } from 'react-icons/tb'
-
-const processSteps = [
-  {
-    title: "Discovery",
-    icon: <TbTarget size={28} color="#167efb" />,
-    description: "Initial understanding of your objectives, requirements, and key business challenges."
-  },
-  {
-    title: "Team Assembly",
-    icon: <VerifiedUser sx={{ color: "#2563eb" }} />,
-    description: "Forming a blended, skilled team on-demand with the right talent fit for evolving needs."
-  },
-  {
-    title: "Agile Iteration",
-    icon: <Build color="primary" />,
-    description: "Work proceeds in sprints or kanban, timelines and scope adjusted as new requirements emerge."
-  },
-  {
-    title: "Transparent Tracking",
-    icon: <Security sx={{ color: "#60a5fa" }} />,
-    description: "Real-time dashboards and weekly reports for full visibility of work performed and costs."
-  },
-  {
-    title: "Continuous Delivery",
-    icon: <ArrowForward sx={{ color: "#0891b2" }} />,
-    description: "Frequent releases and demos, with your feedback steering priorities and output."
-  },
-  {
-    title: "Optimization",
-    icon: <Star sx={{ color: "#1e40af" }} />,
-    description: "Ongoing team right-sizing, process improvement, and knowledge transfer as your program evolves."
-  }
-];
-
-const benefits = [
-  { icon: <Build sx={{ color: "#0ea5e9" }} />, title: "Ultimate Flexibility", description: "Modify scope, scale, and priorities at any time—no change orders or re-negotiations needed." },
-  { icon: <Star sx={{ color: "#60a5fa" }} />, title: "Transparent Billing", description: "You pay for actual team hours and resources used, detailed by task and role, no hidden fees." },
-  { icon: <VerifiedUser sx={{ color: "#2563eb" }} />, title: "Fast Start & Expert Staff", description: "Quick ramp-up with specialists or generalists as needed—perfect for evolving or exploratory projects." },
-];
-
-const useCases = [
-  {
-    name: "Enterprise App Modernization",
-    desc: "Legacy CRM system upgraded in phases; team size and expertise scaled up and down monthly as requirements evolved.",
-    img: "public/About-Us3.jpg"
-  },
-  {
-    name: "AI Research Prototyping",
-    desc: "Collaborative rapid-prototyping of advanced analytics tools for a global retailer—R&D priorities shifted every two sprints.",
-    img: "public/Career-Section.jpg"
-  },
-  {
-    name: "Mobile Product Launch",
-    desc: "Development of an iOS/Android MVP for a startup—product scope and UI/UX iterated based on live user feedback.",
-    img: "public/img1.png"
-  },
-  {
-    name: "Continuous Support & Evolution",
-    desc: "24/7 React/Node.js support and feature development for a SaaS firm, providing monthly usage reporting and adjustable resourcing.",
-    img: "public/img2.png"
-  },
-];
-
-const faqs = [
-  { q: "When is the Time & Material model ideal?", a: "Best for projects with evolving requirements, R&D, innovation sprints, or when speed and flexibility outweigh rigid deliverables." },
-  { q: "How do you track time and billing?", a: "Detailed timesheets are submitted, tracked by task, role, and sprint. You'll receive weekly summaries for transparency." },
-  { q: "Can I scale the team up or down?", a: "Yes, resources can be added or reduced with agreed lead time. This helps optimize your investment as priorities change." },
-  { q: "How is quality maintained with T&M?", a: "Quality is enforced via agile ceremonies, regular code reviews, automated testing, and your continuing feedback." },
-];
+import { processSteps, benefits, useCases, faqs } from '../../data/serviceData/timeMaterialModelData'
+import timeMaterialImg from "../../assets/timeAndMaterial.jpeg"
 
 export default function TimeAndMaterial() {
   return (
-    <div className="bg-background mt-23 min-h-screen font-family-base">
-      {/* Hero Section */}
-      <div
-        className="relative w-full flex flex-col items-center pt-27 pb-27 bg-cover bg-center"
-        style={{
-          backgroundImage: "url('services/timeAndMaterial.jpeg')",
-          backgroundBlendMode: "overlay",
-          backgroundColor: "rgba(0, 50, 70, 0.5)",
-          backgroundAttachment: "fixed",
-        }}
-      >
-        <h1 className="text-button-text text-center tracking-tight font-bold drop-shadow-lg" style={{ fontSize: 'var(--font-size-title)' }}>
-          Time & Material Engagements
-        </h1>
-        <p className="font-semibold italic text-center text-button-text" style={{ fontSize: 'var(--font-size-subheading)' }}>
-          Flexible, transparent, and responsive delivery for dynamic needs
-        </p>
-      </div>
+    <Box
+      sx={{
+        minHeight: "100vh",
+        width: "100%",
+        py: { xs: '', md: 14 },
+        fontFamily: "var(--font-family-base)",
+        background: 'var(--color-background)',
+      }}
+    >
+
+      {/* HERO */}
+      <Box sx={{
+        px: { xs: 2, md: 8 },
+        pt: { xs: 13, md: 0 }
+      }}>
+        <Box
+          sx={{
+            position: "relative",
+            width: "100%",
+            minHeight: { xs: 500, md: 620 },
+            display: "flex",
+            alignItems: "end",
+            justifyContent: "center",
+            backgroundImage: `url(${timeMaterialImg})`,
+            backgroundAttachment: "fixed",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            overflow: "hidden",
+            mb: 5,
+          }}
+        >
+          {/* Overlay */}
+          <Box
+            sx={{
+              position: "absolute",
+              inset: 0,
+              bgcolor: "rgba(0,0,0,0.3)", // semi-transparent white
+
+              zIndex: 1,
+            }}
+          />
+
+
+          {/* Content */}
+          <Box
+            sx={{
+              position: "relative",
+              zIndex: 2,
+              width: { xs: "90%", md: "80%" },
+              textAlign: { xs: "center", md: "left" },
+              // mx: "auto",
+              py: { xs: 5, md: 20 },
+            }}
+          >
+            {/* Breadcrumb Navigation - fixed top left corner within the div */}
+            <nav className="absolute -top-7 md:top-15 text-white font-bold text-lg md:text-2xl uppercase">
+              {/* First line: breadcrumb links separated by slash */}
+              <div className="flex space-x-3">
+                {/* <a>
+                  What We Do
+                </a>
+                <span>/</span> */}
+                <span >Service</span>
+                <span>/</span>
+                <span >Time Material Model</span>
+              </div>
+              {/* Second line: horizontal dividing line */}
+              <div className="md:mt-5 h-[2px] w-[300px] md:w-4xl rounded-sm bg-gradient-to-r from-background via-gray-300 to-transparent"></div>
+            </nav>
+            <Typography
+              variant="h3"
+              fontWeight="bold"
+              fontSize='var(--font-size-title)'
+              mb={2}
+              color="white"
+              sx={{ letterSpacing: "-0.02em" }}
+            >
+              Driven by passion, powered by innovation
+            </Typography>
+            <Typography variant="h6" mb={3} color="var(--color-button-text)">
+              We are RSquareSoft, dedicated to empowering businesses with advanced technology and exceptional service.
+            </Typography>
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              href="#open-roles"
+              onClick={() => {
+                const section = document.getElementById("time");
+                if (section) {
+                  const navbarOffset = 80; // Set this to your navbar height
+                  const elementPosition = section.getBoundingClientRect().top + window.pageYOffset;
+                  window.scrollTo({
+                    top: elementPosition - navbarOffset,
+                    behavior: "smooth",
+                  });
+                }
+              }}
+
+              sx={{ boxShadow: 2, borderRadius: "18px", px: 5, py: 1.5, fontSize: "var(--font-size-description)" }}
+            >
+              Explore More
+            </Button>
+          </Box>
+        </Box>
+      </Box>
 
       {/* Overview + Process */}
-      <div className="max-w-6xl mx-auto py-10 px-4">
+      <div id='time' className="max-w-6xl mx-auto py-10 px-4">
 
         {/* Service Overview */}
         <div className="mb-12 text-center">
@@ -249,7 +270,7 @@ export default function TimeAndMaterial() {
           Start Your T&M Engagement
         </Button>
       </div>
-    </div>
+    </Box>
   )
 }
 
