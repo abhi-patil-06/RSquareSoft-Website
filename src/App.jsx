@@ -3,7 +3,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import ValetPlus from "./pages/products/ValetPlus";
 // import Karmika from "./pages/products/Karmika";
-import Takumi from "./pages/products/TakuMi";
+import Takumi from './pages/products/Takumi'
 // import CP from "./pages/products/CP";
 import Insights from "./pages/insights/Insights";
 import Careers from "./pages/career/Careers";
