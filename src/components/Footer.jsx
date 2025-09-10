@@ -24,7 +24,7 @@ export default function Footer() {
             one of our advisors is excited to help.
           </p>
           <a
-            onClick={() => navigate("/contactForm")}
+            onClick={() => navigate("/contact-form")}
             className="inline-block cursor-pointer bg-white text-blue-800 font-semibold py-3 px-8 rounded-full transition duration-300 hover:bg-gray-200 hover:scale-105"
           >
             Get started
@@ -63,9 +63,9 @@ export default function Footer() {
             {/* Changed text color to match blue theme */}
             <h4 className="text-lg font-semibold mb-4 text-blue-300">About</h4>
             <ul className="space-y-2 text-sm text-gray-300">
-              <li><a onClick={() => navigate('/aboutUs')} className="hover:text-white transition duration-200 cursor-pointer">About Us</a></li>
+              <li><a onClick={() => navigate('/about-us')} className="hover:text-white transition duration-200 cursor-pointer">About Us</a></li>
               <li><a onClick={() => navigate('/careers')} className="hover:text-white transition duration-200 cursor-pointer">Careers</a></li>
-              <li><a onClick={() => navigate('/newsRoom')} className="hover:text-white transition duration-200 cursor-pointer">Newsroom</a></li>
+              <li><a onClick={() => navigate('/news-room')} className="hover:text-white transition duration-200 cursor-pointer">Newsroom</a></li>
               {/* Add more About-related links if needed */}
             </ul>
           </div>
@@ -75,8 +75,8 @@ export default function Footer() {
             {/* Changed text color to match blue theme */}
             <h4 className="text-lg font-semibold mb-4 text-blue-300">Support</h4>
             <ul className="space-y-2 text-sm text-gray-300 mb-6">
-              <li><a onClick={() => navigate("/contactForm")} className="hover:text-white transition duration-200 cursor-pointer">Support Request</a></li>
-              <li><a onClick={() => navigate("/contactForm")} className="hover:text-white transition duration-200 cursor-pointer">Contact</a></li>
+              <li><a onClick={() => navigate("/contact-form")} className="hover:text-white transition duration-200 cursor-pointer">Support Request</a></li>
+              <li><a onClick={() => navigate("/contact-form")} className="hover:text-white transition duration-200 cursor-pointer">Contact</a></li>
             </ul>
 
             {/* Changed text color to match blue theme */}
@@ -94,7 +94,7 @@ export default function Footer() {
         {/* Changed border color to match blue theme */}
         <div className="mt-16 border-t border-blue-700 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-400">
           <p>© {currentYear} RSquareSoft Technologies India Private Limited, All Rights Reserved</p>
-          <a onClick={() => navigate("/privacyPolicy")} className="mt-2 md:mt-0 hover:text-white transition duration-220 cursor-pointer">Privacy Policy</a>
+          <a onClick={() => navigate("/privacy-policy")} className="mt-2 md:mt-0 hover:text-white transition duration-220 cursor-pointer">Privacy Policy</a>
         </div>
       </div>
     </footer>

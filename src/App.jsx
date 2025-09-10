@@ -2,9 +2,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import ValetPlus from "./pages/products/ValetPlus";
-import Karmika from "./pages/products/Karmika";
+// import Karmika from "./pages/products/Karmika";
 import Takumi from "./pages/products/TakuMi";
-import CP from "./pages/products/CP";
+// import CP from "./pages/products/CP";
 import Insights from "./pages/insights/Insights";
 import Careers from "./pages/career/Careers";
 import ProductDevelopment from "./pages/services/ProductDevelopment";
@@ -51,30 +51,30 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/aboutUs" element={<AboutUs />} />
+        <Route path="/about-us" element={<AboutUs />} />
         <Route path="/event" element={<EventSection />} />
-        <Route path="/newsRoom" element={<Newsroom />} />
+        <Route path="/news-room" element={<Newsroom />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:id" element={<BlogDetail />} />
         <Route path="/valetplus" element={<ValetPlus />} />
-        <Route path="/karmika" element={<Karmika />} />
+        {/* <Route path="/karmika" element={<Karmika />} /> */}
         <Route path="/takumi" element={<Takumi />} />
-        <Route path="/cp" element={<CP />} />
+        {/* <Route path="/cp" element={<CP />} /> */}
         <Route path="/insights" element={<Insights />} />
         <Route path="/careers" element={<Careers />} />
-        <Route path="/productDev" element={<ProductDevelopment />} />
-        <Route path="/podModel" element={<PodModel />} />
-        <Route path="/timeMaterial" element={<TimeMaterialModel />} />
-        <Route path="/enterpriseProduct" element={<EnterpriseProduction />} />
-        <Route path="/cloudExpertise" element={<CloudExpertise />} />
-        <Route path="/ai" element={<ArtificialIntelligence />} />
-        <Route path="/dataAnalytics" element={<DataAnalytics />} />
-        <Route path="/ml" element={<MachineLearning />} />
-        <Route path="/ceo" element={<CeoInfoSection />} />
-        <Route path="/cto" element={<CtoInfoSection />} />
+        <Route path="/product-development" element={<ProductDevelopment />} />
+        <Route path="/pod-model" element={<PodModel />} />
+        <Route path="/time-material" element={<TimeMaterialModel />} />
+        <Route path="/enterprise-product" element={<EnterpriseProduction />} />
+        <Route path="/cloud-expertise" element={<CloudExpertise />} />
+        <Route path="/artificial-intelligence" element={<ArtificialIntelligence />} />
+        <Route path="/data-analytics" element={<DataAnalytics />} />
+        <Route path="/machine-learning" element={<MachineLearning />} />
+        <Route path="/ramesh-gharmalkar" element={<CeoInfoSection />} />
+        <Route path="/rajneesh-shrimali" element={<CtoInfoSection />} />
         <Route path="/expert" element={<ExpertPage />} />
-        <Route path="/contactForm" element={<ClientContactForm />} />
-        <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
+        <Route path="/contact-form" element={<ClientContactForm />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
       </Routes>
 
       <ScrollToTopButton />

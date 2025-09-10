@@ -11,7 +11,7 @@ export default function Insights() {
   const cardWidth = 300; // px
   const gap = 16; // px, tailwind gap-4
   const navigate = useNavigate();
-  const youtubeVideoId = "bQieLqcSmEI";
+  
 
 
 
@@ -123,7 +123,6 @@ export default function Insights() {
             variant="contained"
             color="primary"
             size="large"
-            href="#open-roles"
             onClick={() => {
               const section = document.getElementById("article");
               if (section) {
@@ -218,43 +217,7 @@ export default function Insights() {
         <Articles articles={mockArticles} />
       </section>
 
-      {/* Testimonial & Video Section */}
-      <section className="w-full md:max-w-7xl mx-auto px-6 py-10 bg-white shadow-md mt-16 mb-24">
-        <div className="text-center mb-10 mx-auto">
-          <h2
-            className="font-bold text-text-primary"
-            style={{ fontSize: "var(--font-size-heading1)" }}
-          >
-            Testimonials
-          </h2>
-          <div className="w-32 h-1 bg-primary mx-auto mt-2 rounded"></div>
-        </div>
-
-        <div className="flex flex-col md:flex-row items-center md:space-x-14">
-          {/* Video embed */}
-          <div className="w-full md:w-2/3 aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-lg">
-            <iframe
-              src={`https://www.youtube-nocookie.com/embed/${youtubeVideoId}?rel=0&modestbranding=1`}
-              title="Testimonial Video"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="w-full h-[450px]"
-            />
-          </div>
-
-          {/* Testimonial text */}
-          <blockquote className="mt-10 md:mt-0 w-full md:w-1/3 text-gray-900 italic font-serif text-lg leading-relaxed">
-            <p>
-              “This product transformed how our team collaborates and delivers
-              results efficiently. The insights gained from their research helped
-              us solve complex problems with ease.”
-            </p>
-            <footer className="mt-5 text-sm font-semibold text-gray-600 not-italic">
-              — Ramesh Gharmalkar, CEO
-            </footer>
-          </blockquote>
-        </div>
-      </section>
+      
 
       <section>
         <Blog />

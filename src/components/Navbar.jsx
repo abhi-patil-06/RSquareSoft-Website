@@ -41,17 +41,17 @@ const NAV_ITEMS = {
             description: [
                 {
                     label: "Product Development",
-                    link: "/productDev",
+                    link: "/product-development",
                     icon: FaIcons.FaLaptopCode,
                 },
                 {
                     label: "Pod Model (Fixed Price)",
-                    link: "/podModel",
+                    link: "/pod-model",
                     icon: FaIcons.FaCubes,
                 },
                 {
                     label: "Time and Material Model",
-                    link: "/timeMaterial",
+                    link: "/time-material",
                     icon: FaIcons.FaClock,
                 },
                 // { label: "Web & Mobile App Development", link: "#", icon: FaIcons.FaMobileAlt },
@@ -76,25 +76,28 @@ const NAV_ITEMS = {
             description: [
                 {
                     label: "Enterprise Products",
-                    link: "/enterpriseProduct",
+                    link: "/enterprise-product",
                     icon: FaIcons.FaDatabase,
                 },
                 {
                     label: "Cloud Expertise",
-                    link: "/cloudExpertise",
+                    link: "/cloud-expertise",
                     icon: FaIcons.FaCloud,
                 },
                 {
                     label: "Artificial Intelligence",
-                    link: "/ai",
+                    link: "/artificial-intelligence",
                     icon: FaIcons.FaRobot,
                 },
                 {
                     label: "Data Analytics",
-                    link: "/dataAnalytics",
+                    link: "/data-analytics",
                     icon: FaIcons.FaChartLine,
                 },
-                { label: "Machine Learning", link: "/ml", icon: FaIcons.FaBrain },
+                { 
+                    label: "Machine Learning", 
+                    link: "/machine-learning", 
+                    icon: FaIcons.FaBrain },
             ],
         },
     ],
@@ -123,7 +126,7 @@ const NAV_ITEMS = {
             title: "About Us",
             icon: FaIcons.FaDatabase,
             description: [
-                { label: "About Us", link: "/aboutUs", icon: FaIcons.FaRegNewspaper },
+                { label: "About Us", link: "/about-us", icon: FaIcons.FaRegNewspaper },
                 // { label: "Leadership team", link: "#", icon: FaIcons.FaUsersCog },
             ],
         },
@@ -143,7 +146,7 @@ const NAV_ITEMS = {
             title: "Newsroom",
             icon: FaIcons.FaGlobe,
             description: [
-                { label: "News Room", link: "/newsRoom", icon: FaIcons.FaRegNewspaper },
+                { label: "News Room", link: "/news-room", icon: FaIcons.FaRegNewspaper },
                 // { label: "Media coverage", link: "#", icon: FaIcons.FaChartLine },
             ],
         },

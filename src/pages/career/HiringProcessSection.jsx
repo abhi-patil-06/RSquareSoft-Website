@@ -1,20 +1,21 @@
 import React, { useState } from "react";
 
 const fresherSteps = [
-  { id: 1, name: "Application", desc: "Submit your resume and application form." },
-  { id: 2, name: "Online Test", desc: "Complete the online aptitude and technical test." },
-  { id: 3, name: "Technical Interview", desc: "Attend a technical interview with our experts." },
-  { id: 4, name: "HR Interview", desc: "Discuss your goals and company fit with HR." },
-  { id: 5, name: "Offer & Onboarding", desc: "Receive your offer letter and start onboarding process." },
+  { id: 1, name: "Technical Test", desc: "An online or written test to assess aptitude, logical reasoning, and basic technical knowledge." },
+  { id: 2, name: "Technical Coding Round", desc: "A coding assessment to evaluate problem-solving and programming skills in real-time." },
+  { id: 3, name: "Technical Interview", desc: "A one-on-one interview focusing on core subjects, coding, and technical problem-solving." },
+  { id: 4, name: "HR Interview", desc: "An interaction to evaluate communication skills, personality, and cultural fit with the company." },
+  { id: 5, name: "Offer Discussion", desc: "Final step where the job role, compensation, and employment terms are discussed." },
 ];
 
 const experiencedSteps = [
-  { id: 1, name: "Application", desc: "Submit your resume, cover letter, and portfolio." },
-  { id: 2, name: "Technical Round", desc: "Technical team evaluates your skills through interviews." },
-  { id: 3, name: "Managerial Round", desc: "Meet the hiring manager to discuss role expectations." },
-  { id: 4, name: "HR Discussion", desc: "Negotiate salary, benefits and company policies." },
-  { id: 5, name: "Final Offer", desc: "Receive the job offer and details about joining." },
+  { id: 1, name: "Resume Screening", desc: "Initial evaluation of the candidate’s resume to check relevance of skills and experience." },
+  { id: 2, name: "Technical Round 1", desc: "Interview to assess technical knowledge, domain expertise, and problem-solving ability." },
+  { id: 3, name: "Technical Round 2", desc: "Advanced technical discussion involving system design, architecture, or role-specific challenges." },
+  { id: 4, name: "HR Round", desc: "Interview to understand career goals, soft skills, and alignment with company culture." },
+  { id: 5, name: "Offer Discussion", desc: "Negotiation and confirmation of compensation, benefits, and offer details." },
 ];
+
 
 export default function HiringProcess() {
   const [candidateType, setCandidateType] = useState("fresher");

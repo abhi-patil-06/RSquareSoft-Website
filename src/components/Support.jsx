@@ -50,7 +50,7 @@ export default function SupportButton() {
             onClick={() => setFormOpen(true)}
             className={`
               fixed left-0 bottom-10 z-50 flex items-center cursor-pointer 
-              bg-blue-600 text-white rounded-r-full shadow-lg
+              bg-blue-800 text-white rounded-r-full shadow-lg
               transition-all duration-1000 ease-in-out overflow-hidden
               ${expanded ? "w-40 h-12 px-4 py-2" : "w-12 h-12 justify-center"}
               select-none
@@ -76,11 +76,11 @@ export default function SupportButton() {
         <Box
           ref={formRef}
           className="fixed left-0 bottom-10 z-1050 bg-white shadow-xl rounded-r-lg p-6 w-96"
-          sx={{
-            borderColor: theme.palette.primary.main,
-            borderWidth: 2,
-            borderStyle: "solid",
-          }}
+          // sx={{
+          //   borderColor: theme.palette.primary.main,
+          //   borderWidth: 2,
+          //   borderStyle: "solid",
+          // }}
         >
           <form
             onSubmit={(e) => {
@@ -90,7 +90,7 @@ export default function SupportButton() {
               setExpanded(false);
             }}
           >
-            <h2 className="text-lg font-semibold mb-4 text-blue-700">Contact to Support Team</h2>
+            <h2 className="text-lg font-semibold mb-4 text-blue-800">Contact to Support Team</h2>
             <TextField
               fullWidth
               label="Name"

@@ -61,7 +61,7 @@ const AboutSection = () => {
                         Explore More
                     </Link> */}
                     <button className="relative text-primary font-semibold group px-0 py-0 mt-2 md:mt-5 bg-transparent border-none shadow-none transition cursor-pointer"
-                        onClick={() => navigate('/aboutUs')}>
+                        onClick={() => navigate('/about-us')}>
                         Read More
                         <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 bg-primary h-0.5 mt-1" />
                     </button>

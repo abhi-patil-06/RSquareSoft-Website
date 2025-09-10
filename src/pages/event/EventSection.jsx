@@ -134,9 +134,8 @@ export default function EventSection() {
               variant="contained"
               color="primary"
               size="large"
-              href="#open-roles"
               onClick={() => {
-                const section = document.getElementById("career");
+                const section = document.getElementById("events-visual");
                 if (section) {
                   const navbarOffset = 80; // Set this to your navbar height
                   const elementPosition = section.getBoundingClientRect().top + window.pageYOffset;
@@ -157,7 +156,7 @@ export default function EventSection() {
       </Box>
 
       {/* Event Highlights Section */}
-      <section id="events-visual" className="bg-background px-6 py-2 lg:px-8">
+      <section  id="events-visual" className="bg-background px-6 py-2 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <div className="text-center py-5">

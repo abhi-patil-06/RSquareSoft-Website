@@ -4,7 +4,7 @@ import { blogData } from "../../data/BlogData";
 
 export default function Blog() {
   return (
-    <div className="max-w-7xl mx-auto p-6">
+    <div className="max-w-7xl mx-auto p-6 py-30">
       <div className="text-center mb-8 max-w-screen-xl mx-auto px-4">
           <h2
             className="font-bold text-text-primary"

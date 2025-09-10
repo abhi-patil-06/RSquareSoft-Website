@@ -101,7 +101,6 @@ export default function Careers() {
               variant="contained"
               color="primary"
               size="large"
-              href="#open-roles"
               onClick={() => {
                 const section = document.getElementById("career");
                 if (section) {

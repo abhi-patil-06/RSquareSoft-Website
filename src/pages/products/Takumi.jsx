@@ -1,145 +1,314 @@
-import React, { useState, useEffect } from "react";
-import { Button } from "@mui/material";
-import StarIcon from "@mui/icons-material/Star";
-import logoTakumi from '../../assets/Takumi-home.png'
-import takumiBg from '../../assets/takumi-bg3.png'
-
-// Typing Effect Hook
-const useTypingEffect = (
-    texts,
-    speed = 100,
-    deleteSpeed = 50,
-    pauseTime = 2000
-) => {
-    const [displayText, setDisplayText] = useState("");
-    const [textIndex, setTextIndex] = useState(0);
-    const [isDeleting, setIsDeleting] = useState(false);
-
-    useEffect(() => {
-        let timeout;
-        const currentText = texts[textIndex];
-
-        if (!isDeleting && displayText === currentText) {
-            timeout = setTimeout(() => setIsDeleting(true), pauseTime);
-        } else if (isDeleting && displayText === "") {
-            setIsDeleting(false);
-            setTextIndex((prev) => (prev + 1) % texts.length);
-        } else {
-            const updateSpeed = isDeleting ? deleteSpeed : speed;
-            timeout = setTimeout(() => {
-                setDisplayText((prev) => {
-                    if (isDeleting) {
-                        return currentText.substring(0, prev.length - 1);
-                    } else {
-                        return currentText.substring(0, prev.length + 1);
-                    }
-                });
-            }, updateSpeed);
-        }
-
-        return () => clearTimeout(timeout);
-    }, [displayText, textIndex, isDeleting, texts, speed, deleteSpeed, pauseTime]);
-
-    return displayText;
-};
+import React, { useState, useEffect } from 'react';
+import { ArrowRight, Zap, Shield, Rocket, Users, ExternalLink } from 'lucide-react';
+import takumiLogo from '../../assets/Takumi-home.png'
+import { HiOutlineScale, HiOutlineLightBulb, HiOutlineEye, HiOutlineHand } from "react-icons/hi";
 
 const Takumi = () => {
-    const points = [
-        "Market Abuse Detection",
-        "Insider Trading Monitoring",
-        "Fraud Activity Prevention",
-        "Regulatory Compliance",
-        "Real-Time Alerts",
-    ];
+    const [isVisible, setIsVisible] = useState(false);
 
-    const typedText = useTypingEffect(points);
+    useEffect(() => {
+        setTimeout(() => setIsVisible(true), 100);
+    }, []);
+
+    const features = [
+  {
+    icon: HiOutlineScale,
+    title: "One Global Lens: No Blind Spots",
+    description: "Comprehensive, multi-asset visibility across equities, fixed income, commodities, FX, derivatives, and digital assets globally."
+  },
+  {
+    icon: HiOutlineLightBulb,
+    title: "Real-Time Vigilance Meets Historical Wisdom",
+    description: "Immediate red flag detection with real-time monitoring combined with deep historical analysis to uncover subtle, evolving behavioral patterns."
+  },
+  {
+    icon: HiOutlineEye,
+    title: "The Need for Rapid Analytics",
+    description: "A rich set of pre-configured analytics with easy configuration and the ability to rapidly develop new patterns to adapt faster than fraudsters."
+  },
+  {
+    icon: HiOutlineHand,
+    title: "Compliance Without Chaos: Built-in Auditing",
+    description: "A 'black box' for every action, exhaustive audit reports, and full historical traceability showing what happened, when, why, and by whom."
+  }
+];
 
     return (
-        <section className="min-h-screen flex items-center justify-center bg-white px-6">
-            <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="min-h-screen bg-background relative font-family-base overflow-hidden">
+            {/* Subtle Background Pattern */}
+            {/* <div className="absolute inset-0 opacity-10">
+                <div className="absolute top-20 left-20 w-72 h-72 bg-[#5837b3] rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
+                <div className="absolute top-40 right-20 w-72 h-72 bg-[#bcbc4b] rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
+                <div className="absolute bottom-20 left-40 w-72 h-72 bg-[#5837b3] rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
+            </div> */}
 
-                {/* Breadcrumb Navigation - fixed top left corner within the div */}
-                <nav className="absolute top-25 md:top-25 text-text-primary font-bold text-lg md:text-2xl uppercase">
-                    {/* First line: breadcrumb links separated by slash */}
-                    <div className="flex space-x-3">
-                        <a>
-                            What We Do
+            {/* Main Content */}
+            <div className="relative z-10 container mx-auto px-6 py-16">
+                <div className={`text-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+
+                    {/* Product Logo */}
+                    <div className="mb-6 flex flex-row items-center justify-center gap-x-6">
+                        <div className="inline-flex items-center justify-center  transition-transform duration-300">
+                            <img src={takumiLogo} alt="ValetPlus" className="w-84 " />
+                        </div>
+                        {/* <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-slate-800 mb-0 tracking-tight">
+                            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+                                ValetPlus
+                            </span>
+                        </h1> */}
+                    </div>
+
+
+                    {/* Inspirational Quote */}
+                    <div className="max-w-4xl mx-auto mb-12">
+                        <blockquote className="text-2xl md:text-3xl lg:text-4xl font-light text-slate-600 leading-relaxed mb-4">
+                            "Takumi empowers organizations to see beyond the trade by delivering clarity, control, and compliance in every transaction."
+                        </blockquote>
+                    </div>
+
+                    {/* CTA Button */}
+                    <div className="mb-20">
+                        <a
+                            href="https://takumi-platform.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group inline-flex items-center gap-3 bg-gradient-to-r from-[#143e5b] to-[#0c293d] hover:from-[#0c293d] hover:to-[#143e5b] text-white font-semibold px-8 py-4 rounded-full shadow-xl hover:shadow-2xl transform  transition-all duration-300 text-lg"
+                        >
+                            {/* <ExternalLink className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" /> */}
+                            Explore TakuMi
+                            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                         </a>
-                        <span>/</span>
-                        <span>Products</span>
-                    </div>
-                    {/* Second line: horizontal dividing line */}
-                    <div className="md:mt-5 h-[2px] w-[300px] md:w-4xl rounded-sm bg-gradient-to-r from-gray-500 via-gray-300 to-transparent"></div>
-                </nav>
-
-                {/* Left Side */}
-                <div
-                    className="flex flex-col pt-30 items-center text-center select-none space-y-8 max-w-xl mx-auto"
-                    style={{ animation: "fadeSlideIn 1s ease forwards" }}
-                >
-                    <div className="flex justify-start mb-4 w-full ">
-                        <img src={logoTakumi} alt="ValetPlus" className="w-100" />
                     </div>
 
-                    {/* <h1 className="text-5xl font-extrabold text-gray-900 leading-tight">
-                        We Focus On
-                    </h1> */}
+                    {/* Feature Cards */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+                        {features.map((feature, index) => (
+                            <div
+                                key={index}
+                                className={`group bg-white/80 backdrop-blur-sm border border-white/50 rounded-2xl p-8 hover:bg-white/90 hover:shadow-xl hover:-translate-y-2 transition-all duration-500 ${isVisible ? 'animate-fade-in-up' : 'opacity-0'}`}
+                                style={{ animationDelay: `${index * 150}ms` }}
+                            >
+                                <div className="mb-6">
+                                    <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-[#143e5b] to-[#0c293d] rounded-xl group-hover:scale-110 transition-transform duration-300">
+                                        <feature.icon className="w-7 h-7 text-white" strokeWidth={2} />
+                                    </div>
+                                </div>
 
-                    <h2 className="text-3xl font-semibold text-gradient-to-r from-blue-500 to-cyan-400 relative h-10 w-full text-start inline-block">
-                        Focused on <span className="text-primary pb-1">{typedText}</span><span className="text-primary animate-blink">|</span>
-                    </h2>
+                                <h3 className="text-xl font-bold text-gray-500 mb-4 group-hover:text-[#0c293d] transition-colors duration-300">
+                                    {feature.title}
+                                </h3>
 
-                    <p className="text-lg text-gray-600 max-w-xl text-start leading-relaxed">
-                        Our Trade Surveillance helps financial institutions monitor and detect suspicious activities, reduce risks, and stay compliant with regulatory requirements.
-                    </p>
+                                <p className="text-slate-600 leading-relaxed text-sm">
+                                    {feature.description}
+                                </p>
 
-                    <button onClick={() => window.open("https://takumi-platform.com", "_blank")} className="relative w-50 h-14 px-2 py-3 font-semibold border border-blue-950 text-blue-950 hover:bg-primary hover:text-white transition-all duration-300 cursor-pointer rounded-4xl text-xl hover:border-0">
-                        Discover TakuMi
-                    </button>
-                </div>
-
-
-                {/* Right Side with Image */}
-                <div
-                    className="flex justify-center"
-                    style={{ animation: "fadeSlideIn 1s ease forwards", animationDelay: "0.5s" }}
-                >
-                    <img
-                        src={takumiBg}
-                        alt="Hero"
-                        className="max-w-full h-auto md:mr-10"
-                    />
+                                {/* Subtle hover effect line */}
+                                <div className="w-0 group-hover:w-full h-0.5 bg-gradient-to-r from-[#143e5b] to-[#0c293d] transition-all duration-500 mt-6 rounded-full"></div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
 
-            <style>
-                {`
-          @keyframes fadeSlideIn {
-            0% {
-              opacity: 0;
-              transform: translateX(-50px);
-            }
-            100% {
-              opacity: 1;
-              transform: translateX(0);
-            }
+            <style jsx>{`
+        @keyframes blob {
+          0% {
+            transform: translate(0px, 0px) scale(1);
           }
-
-          @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
+          33% {
+            transform: translate(30px, -50px) scale(1.1);
           }
-
-          .animate-blink {
-            animation: blink 1s step-start infinite;
+          66% {
+            transform: translate(-20px, 20px) scale(0.9);
           }
-        `}
-            </style>
-        </section>
+          100% {
+            transform: translate(0px, 0px) scale(1);
+          }
+        }
+        .animate-blob {
+          animation: blob 7s infinite;
+        }
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+        .animation-delay-4000 {
+          animation-delay: 4s;
+        }
+        
+        @keyframes fade-in-up {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-fade-in-up {
+          animation: fade-in-up 0.8s ease-out forwards;
+        }
+      `}</style>
+        </div>
     );
 };
 
 export default Takumi;
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React, { useState, useEffect } from "react";
+// import { Button } from "@mui/material";
+// import StarIcon from "@mui/icons-material/Star";
+// import logoTakumi from '../../assets/Takumi-home.png'
+// import takumiBg from '../../assets/takumi-bg3.png'
+
+// // Typing Effect Hook
+// const useTypingEffect = (
+//     texts,
+//     speed = 100,
+//     deleteSpeed = 50,
+//     pauseTime = 2000
+// ) => {
+//     const [displayText, setDisplayText] = useState("");
+//     const [textIndex, setTextIndex] = useState(0);
+//     const [isDeleting, setIsDeleting] = useState(false);
+
+//     useEffect(() => {
+//         let timeout;
+//         const currentText = texts[textIndex];
+
+//         if (!isDeleting && displayText === currentText) {
+//             timeout = setTimeout(() => setIsDeleting(true), pauseTime);
+//         } else if (isDeleting && displayText === "") {
+//             setIsDeleting(false);
+//             setTextIndex((prev) => (prev + 1) % texts.length);
+//         } else {
+//             const updateSpeed = isDeleting ? deleteSpeed : speed;
+//             timeout = setTimeout(() => {
+//                 setDisplayText((prev) => {
+//                     if (isDeleting) {
+//                         return currentText.substring(0, prev.length - 1);
+//                     } else {
+//                         return currentText.substring(0, prev.length + 1);
+//                     }
+//                 });
+//             }, updateSpeed);
+//         }
+
+//         return () => clearTimeout(timeout);
+//     }, [displayText, textIndex, isDeleting, texts, speed, deleteSpeed, pauseTime]);
+
+//     return displayText;
+// };
+
+// const Takumi = () => {
+//     const points = [
+//         "Market Abuse Detection",
+//         "Insider Trading Monitoring",
+//         "Fraud Activity Prevention",
+//         "Regulatory Compliance",
+//         "Real-Time Alerts",
+//     ];
+
+//     const typedText = useTypingEffect(points);
+
+//     return (
+//         <section className="min-h-screen flex items-center justify-center bg-white px-6">
+//             <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+//                 {/* Breadcrumb Navigation - fixed top left corner within the div */}
+//                 <nav className="absolute top-25 md:top-25 text-text-primary font-bold text-lg md:text-2xl uppercase">
+//                     {/* First line: breadcrumb links separated by slash */}
+//                     <div className="flex space-x-3">
+//                         <a>
+//                             What We Do
+//                         </a>
+//                         <span>/</span>
+//                         <span>Products</span>
+//                     </div>
+//                     {/* Second line: horizontal dividing line */}
+//                     <div className="md:mt-5 h-[2px] w-[300px] md:w-4xl rounded-sm bg-gradient-to-r from-gray-500 via-gray-300 to-transparent"></div>
+//                 </nav>
+
+//                 {/* Left Side */}
+//                 <div
+//                     className="flex flex-col pt-30 items-center text-center select-none space-y-8 max-w-xl mx-auto"
+//                     style={{ animation: "fadeSlideIn 1s ease forwards" }}
+//                 >
+//                     <div className="flex justify-start mb-4 w-full ">
+//                         <img src={logoTakumi} alt="ValetPlus" className="w-100" />
+//                     </div>
+
+//                     {/* <h1 className="text-5xl font-extrabold text-gray-900 leading-tight">
+//                         We Focus On
+//                     </h1> */}
+
+//                     <h2 className="text-3xl font-semibold text-gradient-to-r from-blue-500 to-cyan-400 relative h-10 w-full text-start inline-block">
+//                         Focused on <span className="text-primary pb-1">{typedText}</span><span className="text-primary animate-blink">|</span>
+//                     </h2>
+
+//                     <p className="text-lg text-gray-600 max-w-xl text-start leading-relaxed">
+//                         Our Trade Surveillance helps financial institutions monitor and detect suspicious activities, reduce risks, and stay compliant with regulatory requirements.
+//                     </p>
+
+//                     <button onClick={() => window.open("https://takumi-platform.com", "_blank")} className="relative w-50 h-14 px-2 py-3 font-semibold border border-blue-950 text-blue-950 hover:bg-primary hover:text-white transition-all duration-300 cursor-pointer rounded-4xl text-xl hover:border-0">
+//                         Discover TakuMi
+//                     </button>
+//                 </div>
+
+
+//                 {/* Right Side with Image */}
+//                 <div
+//                     className="flex justify-center"
+//                     style={{ animation: "fadeSlideIn 1s ease forwards", animationDelay: "0.5s" }}
+//                 >
+//                     <img
+//                         src={takumiBg}
+//                         alt="Hero"
+//                         className="max-w-full h-auto md:mr-10"
+//                     />
+//                 </div>
+//             </div>
+
+//             <style>
+//                 {`
+//           @keyframes fadeSlideIn {
+//             0% {
+//               opacity: 0;
+//               transform: translateX(-50px);
+//             }
+//             100% {
+//               opacity: 1;
+//               transform: translateX(0);
+//             }
+//           }
+
+//           @keyframes blink {
+//             0%, 100% { opacity: 1; }
+//             50% { opacity: 0; }
+//           }
+
+//           .animate-blink {
+//             animation: blink 1s step-start infinite;
+//           }
+//         `}
+//             </style>
+//         </section>
+//     );
+// };
+
+// export default Takumi;
 
 
 

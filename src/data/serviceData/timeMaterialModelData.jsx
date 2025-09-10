@@ -1,6 +1,25 @@
-import { ArrowForward, Build, Security, VerifiedUser } from "@mui/icons-material";
-import { Star } from "lucide-react";
+import { ArrowForward, Build, Security, Speed, VerifiedUser } from "@mui/icons-material";
+import { Group, Lightbulb, Star } from "lucide-react";
 import { TbTarget } from "react-icons/tb";
+
+
+export const stats = [
+  { number: '10+', label: 'Projects Delivered' },
+  { number: '95%', label: 'Client Satisfaction' },
+  { number: '24/7', label: 'Support Available' },
+  { number: '1+', label: 'Years Experience' }
+];
+
+export const technologies = [
+  'React', 'Fast API', 'Python', 'AWS', 'SQL', 'Java', 'Monitoring', 'DataBricks'
+];
+
+export const serviceOverviewData = [
+  { icon: <Group className="text-blue-600" />, title: "Client-Focused", desc: "Startups, scale-ups, established companies" },
+  { icon: <Speed className="text-green-600" />, title: "Full-Stack", desc: "Web Applications, Mobile Applications" },
+  { icon: <Lightbulb className="text-purple-600" />, title: "Innovation", desc: "Replatforming and all-new product builds" }
+]
+
 
 export const processSteps = [
   {

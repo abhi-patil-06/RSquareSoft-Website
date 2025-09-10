@@ -15,7 +15,7 @@ const sections = [
   { id: "servicesSection", label: "Technology" },
   { id: "solutionsSection", label: "Services" },
   { id: "lifeAtCompanySection", label: "Life at Company" },
-  { id: "valuePrepositionSection", label: "Why Us" },
+  { id: "valuePrepositionSection", label: "Explore" },
 ];
 
 

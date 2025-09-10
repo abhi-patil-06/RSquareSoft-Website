@@ -30,7 +30,7 @@ export default function ContactForm() {
 
   return (
     <div className="flex py-100 items-center justify-center h-screen bg-background">
-      <div className="w-full max-w-lg mx-auto p-8 bg-white   border border-gray-100">
+      <div className="w-full max-w-lg mx-auto p-8 bg-white border border-gray-100">
         <h2 className="text-3xl font-extrabold text-primary mb-8 text-center">
           Connect With Us
         </h2>

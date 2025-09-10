@@ -56,7 +56,7 @@ export default function ArtificialIntelligence() {
           variant="contained"
           color="primary"
           size="large"
-          sx={{ px: 6, py: 2, borderRadius: 5, marginTop: 5 }}
+          sx={{ px: 6, py: 2, borderRadius: 5, marginTop: 3 }}
         >
           Contact Our Experts
         </Button>

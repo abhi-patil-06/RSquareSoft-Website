@@ -101,7 +101,6 @@ export default function AboutUs() {
                                 variant="contained"
                                 color="primary"
                                 size="large"
-                                href="#open-roles"
                                 onClick={() => {
                                     const section = document.getElementById("about");
                                     if (section) {
@@ -187,13 +186,13 @@ export default function AboutUs() {
                             {/* Content */}
                             <div className="w-full md:pl-10 text-start px-5 md:text-left">
                                 <div className="font-semibold text-text-primary" style={{ fontSize: 'var(--font-size-heading)' }}>Ramesh Gharmalkar</div>
-                                <div className=" text-secondary font-medium mb-2" style={{ fontSize: 'var(--font-size-description)' }}>Chief Executive Officer</div>
+                                <div className=" text-secondary font-medium mb-2" style={{ fontSize: 'var(--font-size-description)' }}>Co-Founder & Chief Executive Officer</div>
                                 <div className="text-text-primary mb-4" style={{ fontSize: 'var(--font-size-description)' }}>
                                     Visionary leader driving the company’s growth, innovation, and culture of excellence. Passionate about empowering teams to achieve their best. Seasoned technology leader with extensive experience managing and developing software in complex, global environments. Strong technical skills, leadership abilities, and proven track record of success
                                 </div>
                                 <button className="relative text-primary font-semibold group px-0 py-0 bg-transparent cursor-pointer border-none shadow-none transition"
                                     style={{ fontSize: 'var(--font-size-description)' }}
-                                    onClick={() => navigate('/ceo')}>
+                                    onClick={() => navigate('/ramesh-gharmalkar')}>
                                     Read More
                                     <span className="block max-w-0 group-hover:max-w-full transition-all duration-300 bg-primary h-0.5 mt-1" />
                                 </button>
@@ -215,13 +214,13 @@ export default function AboutUs() {
                             {/* Content */}
                             <div className="w-full md:pr-10 text-start px-5 md:px-0 md:text-left">
                                 <div className="font-semibold text-text-primary" style={{ fontSize: 'var(--font-size-heading)' }}>Rajneesh Shrimali</div>
-                                <div className="text-secondary font-medium mb-2" style={{ fontSize: 'var(--font-size-description)' }}>Chief Technology Officer</div>
+                                <div className="text-secondary font-medium mb-2" style={{ fontSize: 'var(--font-size-description)' }}>Co-Founder & Chief Technology Officer</div>
                                 <div className="text-text-primary mb-4" style={{ fontSize: 'var(--font-size-description)' }}>
                                     Technology strategist leading innovation and advancing product development. Dedicated to building scalable solutions and nurturing talent. Unique blend of technical prowess, strategic vision, and leadership acumen, with experience in building and launching successful cloud-based software products.
                                 </div>
                                 <button className="relative text-primary font-semibold group px-0 py-0 bg-transparent cursor-pointer border-none shadow-none transition"
                                     style={{ fontSize: 'var(--font-size-description)' }}
-                                    onClick={() => navigate('/cto')}>
+                                    onClick={() => navigate('/rajneesh-shrimali')}>
                                     Read More
                                     <span className="block max-w-0 group-hover:max-w-full transition-all duration-300 bg-primary h-0.5 mt-1" />
                                 </button>
@@ -246,7 +245,7 @@ export default function AboutUs() {
                     </div>
 
                     <div className="flex flex-col space-y-5   md:flex-row md:space-x-4 justify-center  p-10">
-                        {cardData.map(({ id, title, icon, content }, index) => (
+                        {cardData.map(({ id, title, icon, content, shortContent }, index) => (
                             <Box
                                 key={id}
                                 className="group  relative w-80 h-80 bg-white overflow-hidden cursor-pointer shadow-md rounded-md"
@@ -281,7 +280,7 @@ export default function AboutUs() {
                                 <div
                                     className="absolute top-10 left-7 flex flex-col space-y-5 transition-transform duration-700 ease-in-out"
                                     style={{
-                                        transform: hoveredIndex === index ? "translateY(-190px)" : "translateY(0)",
+                                        transform: hoveredIndex === index ? "translateY(-300px)" : "translateY(0)",
                                         opacity: 1,
                                     }}
                                 >
@@ -295,6 +294,10 @@ export default function AboutUs() {
                                         Click Here
                                     </h3>
 
+                                    <h3 className="text-text-primary " style={{ fontSize: "var(--font-size-description)" }}>
+                                        {shortContent}
+                                    </h3>
+
                                 </div>
 
                                 {/* Content container */}
@@ -302,7 +305,7 @@ export default function AboutUs() {
                                     className="absolute left-4 right-4 px-2 pt-10 text-text-primary transition-transform duration-1000 ease-in-out"
                                     style={{
                                         fontSize: 'var(--font-size-heading)',
-                                        transform: hoveredIndex === index ? "translateY(0)" : "translateY(140px)",
+                                        transform: hoveredIndex === index ? "translateY(0)" : "translateY(300px)",
                                         opacity: 1,
                                     }}
                                 >

@@ -5,6 +5,18 @@ import { Star } from "lucide-react";
 import { TbTarget } from "react-icons/tb";
 
 
+export const stats = [
+    { number: '10+', label: 'Projects Delivered' },
+    { number: '95%', label: 'Client Satisfaction' },
+    { number: '24/7', label: 'Support Available' },
+    { number: '1+', label: 'Years Experience' }
+  ];
+
+export const technologies = [
+    'React', 'Fast API', 'Python', 'AWS', 'SQL', 'Java', 'Monitoring', 'DataBricks'
+  ];
+
+
 export const processSteps = [
   {
     title: "Ideation",
@@ -41,8 +53,8 @@ export const processSteps = [
 
 export const benefits = [
   { icon: <Star sx={{ color: "#60a5fa" }} />, title: "End-to-end Expertise", description: "Full-cycle product development with seasoned professionals." },
-  { icon: <Build sx={{ color: "#0ea5e9" }} />, title: "Rapid Prototyping", description: "Fast, iterative approach to validate ideas early." },
-  { icon: <Security sx={{ color: "#167efb" }} />, title: "Custom Solutions", description: "Tailored to your industry and business goals." },
+  { icon: <Build sx={{ color: "#60a5fa" }} />, title: "Rapid Prototyping", description: "Fast, iterative approach to validate ideas early." },
+  { icon: <Security sx={{ color: "#60a5fa" }} />, title: "Custom Solutions", description: "Tailored to your industry and business goals." },
 ]
 
 import valetPlusImg from "../../assets/valetPlusProdService.svg"
@@ -74,6 +86,9 @@ export const useCases = [
   //   link: "/cp",
   // },
 ];
+
+
+
 
 
 

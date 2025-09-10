@@ -75,20 +75,23 @@ const specializationsData = [
   },
 ];
 
+
+import { FaBriefcase, FaCogs, FaRocket } from 'react-icons/fa';
+
 // Key benefits data
 const keyBenefits = [
     {
-        icon: <Check size={30} />,
+        icon: <FaBriefcase size={30} />,
         title: '20+ Years Experience',
         description: 'Proven expertise across industries and technologies'
     },
     {
-        icon: <Check size={30} />,
+        icon: <FaCogs size={30} />,
         title: 'Tailored Solutions',
         description: 'Custom strategies designed for your unique challenges'
     },
     {
-        icon: <Check size={30} />,
+        icon: <FaRocket size={30} />,
         title: 'Future-Ready Innovation',
         description: 'Stay ahead with cutting-edge technology adoption'
     }
@@ -172,7 +175,7 @@ function ModernExpertisePage() {
                         AI/ML, data analytics, and custom software development.
                     </p>
                     <button
-                        onClick={() => navigate("/ContactForm")}
+                        onClick={() => navigate("/Contact-form")}
                         className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white font-semibold rounded-full text-lg hover:from-secondary hover:to-primary transform cursor-pointer transition-all duration-300 shadow-lg hover:shadow-xl"
                     >
                         Start Your Project
